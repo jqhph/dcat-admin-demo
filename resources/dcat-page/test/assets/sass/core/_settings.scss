@@ -1,0 +1,69 @@
+
+// Colors //
+
+//$color__salmon:         #f4645f;
+//$color__darker_salmon:  #e74430;
+//$color__faint:          #f0f2f1;
+//$color__gray:           #525252;
+//$color__light_gray:     #aeaeae;
+//$color__lighter_gray:   #dee0df;
+//$color__teal:           #27b4a8;
+
+//:root {
+//  --black: #22292f;
+//  --white: #fff;
+//  --white-50: hsla(0,0%,100%,.5);
+//  --danger: #ff5b5b;
+//  --danger-dark: #bd4147;
+//  --success: #21b978;
+//  --warning: #ffc107;/*#FFBD4A*/
+//  --info: #03a9f4;
+//  --primary: #4099de;
+//  --custom: #59a9f8;
+//  --blue: #007ee5;
+//  --tear: #00897B;
+//  --inverse: #505b6b;
+//  --purple: #5b69bc;
+//  --pink: #ff8acc;
+//  --primary-dark: #297ec0;
+//  --primary-light: #e8f5fb;
+//  --primary-90: rgba(64,153,222,.9);
+//  --primary-70: rgba(64,153,222,.7);
+//  --primary-50: rgba(64,153,222,.5);
+//  --primary-30: rgba(64,153,222,.3);
+//  --primary-10: rgba(64,153,222,.1);
+//  --20: #f6fbff;
+//  --30: #f4f7fa;
+//  --40: #eef1f4;
+//  --50: #e3e7eb;
+//  --60: #bacad6;
+//  --70: #b3b9bf;
+//  --80: #7c858e;
+//  --90: #252d37;
+//  --90-half: rgba(40,54,61,.5);
+//}
+
+$color__salmon:        #4099de;
+$color__darker_salmon: #297ec0;
+$color__red:           #f4645f;
+$color__blue:          #007ee5;
+$color__darker_blue:   #1867c0;
+$color__green:         #21b978;
+$color__yellow:        #f7db60;
+$color__faint:         #f0f2f1;
+$color__gray:          #525252;
+$color__text:          #525252;
+$color__light_gray:    #7c858e;
+$color__lighter_gray:  #dee0df;
+$color__teal:          #27b4a8;
+$color__custom:        #59a9f8;
+
+$banner_background: linear-gradient(-135deg, #8649D6 0, #2791D2 100%);
+
+// Fonts //
+
+$font_headline: Nunito,system-ui,BlinkMacSystemFont,-apple-system,sans-serif;
+$font:          Nunito,system-ui,BlinkMacSystemFont,-apple-system,sans-serif;
+//$font_alt:              'Miriam Libre', sans-serif;
+$font_alt:      Nunito,system-ui,BlinkMacSystemFont,-apple-system,sans-serif;
+$font_code:     'Operator Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', monospace;
