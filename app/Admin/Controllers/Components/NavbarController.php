@@ -23,15 +23,15 @@ class NavbarController extends Controller
                         ->checked('a')
                         ->click()
                         ->map(function ($v) {
-                            $tpl = '<a style="font-weight:bold;color:var(--80)" href="%s" target="_blank">%s</a>';
+                            $tpl = '<a style="font-weight:bold;color:var(--80)" href="%s" target="%s">%s</a>';
 
                             if (is_array($v)) {
                                 list($text, $url) = $v;
 
-                                return sprintf($tpl, $url, $text);
+                                return sprintf($tpl, $url, '_blank', $text);
                             }
 
-                            return sprintf($tpl, 'javascript:void(0)', $v);
+                            return sprintf($tpl, 'javascript:void(0)', '_self', $v);
                         });
 
                     return $nav;
