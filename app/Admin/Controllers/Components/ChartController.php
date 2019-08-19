@@ -250,7 +250,7 @@ HTML;
      */
     protected function box(string $title, $content, string $class = '')
     {
-        return Box::make($title, $content)->style('default')->setAttribute('class', $class);
+        return Box::make($title, $content)->style('default')->setHtmlAttribute('class', $class);
     }
 
 }
