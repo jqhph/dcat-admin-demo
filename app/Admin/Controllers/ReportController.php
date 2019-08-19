@@ -41,9 +41,9 @@ class ReportController extends Controller
             return $view;
         });
 
-        $grid->addMultipleHeader('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->responsive();
-        $grid->addMultipleHeader('avgVist', ['avgMonthVist', 'avgQuarterVist', 'avgYearVist'])->responsive();
-        $grid->addMultipleHeader('top', ['topCost', 'topVist', 'topIncr'])->responsive()->style('color:#1867c0');
+        $grid->combine('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->responsive()->help('test');
+        $grid->combine('avgVist', ['avgMonthVist', 'avgQuarterVist', 'avgYearVist'])->responsive();
+        $grid->combine('top', ['topCost', 'topVist', 'topIncr'])->responsive()->style('color:#1867c0');
 
         $grid->content->limit(50)->responsive();
         $grid->cost->sortable()->responsive();
