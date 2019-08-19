@@ -96,7 +96,7 @@ class GridController extends Controller
         });
 
         $grid->id->code()->sortable();
-        $grid->label->explode()->filter()->label();
+        $grid->label->explode()->label();
         $grid->progressBar->progressBar()->sortable();
         $grid->expand->expand(function (Grid\Displayers\Expand $expand) {
             $faker = Factory::create();
