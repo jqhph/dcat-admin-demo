@@ -292,7 +292,7 @@ class DataCardController extends Controller
             }
 
             return $row;
-        })->style('default')->setAttribute('class', $class);
+        })->style('default')->setHtmlAttribute('class', $class);
     }
 
     protected function buildRandomArray()
