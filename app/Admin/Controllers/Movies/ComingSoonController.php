@@ -72,7 +72,7 @@ class ComingSoonController extends Controller
 
         $grid->disableActions();
         $grid->disableBatchDelete();
-        $grid->disableExport();
+        $grid->disableExporter();
         $grid->disableCreateButton();
         $grid->disableQuickCreateButton();
         $grid->disableFilterButton();
