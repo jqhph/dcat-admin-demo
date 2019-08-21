@@ -38,7 +38,7 @@ class GridController extends Controller
         $grid->disableActions();
         $grid->disableBatchDelete();
         $grid->disablePagination();
-        $grid->disableExport();
+        $grid->disableExporter();
 
         // 设置表格数据
         $grid->model()->setData($this->fetch());
