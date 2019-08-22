@@ -13,7 +13,7 @@ use Dcat\Admin\Widgets\Chart\Line;
 use Dcat\Admin\Widgets\Chart\Pie;
 use Dcat\Admin\Widgets\Chart\PolarArea;
 use Dcat\Admin\Widgets\Chart\Radar;
-use Dcat\Admin\Widgets\DropdownMenu;
+use Dcat\Admin\Widgets\Dropdown;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 
@@ -91,7 +91,7 @@ HTML;
 
         return $this->box('Bar [AJAX]', $chart, 'bar-box')->tool(function () {
             // 创建下拉菜单
-            return DropdownMenu::make(['Ajax Default',  'Ajax Combo', 'Ajax Random'])
+            return Dropdown::make(['Ajax Default',  'Ajax Combo', 'Ajax Random'])
                 ->click()
                 ->buttonClass('btn btn-default')
                 ->map(function ($v, $k) {
