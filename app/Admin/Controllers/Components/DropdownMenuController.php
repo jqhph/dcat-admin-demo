@@ -7,7 +7,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Code;
-use Dcat\Admin\Widgets\DropdownMenu;
+use Dcat\Admin\Widgets\Dropdown;
 use Illuminate\Routing\Controller;
 
 class DropdownMenuController extends Controller
@@ -29,15 +29,15 @@ class DropdownMenuController extends Controller
 
     protected function example1()
     {
-        $menu1 = DropdownMenu::make($this->tian)->button('天干');
+        $menu1 = Dropdown::make($this->tian)->button('天干');
 
-        $menu2 = DropdownMenu::make()
+        $menu2 = Dropdown::make()
             ->button('使用标题')
             ->buttonClass('btn btn-sm btn-inverse')
             ->options($this->tian, '天干')
             ->options($this->di, '地支');
 
-        $menu3 = DropdownMenu::make([1, 2, 3, DropdownMenu::DIVIDER, 4, 5])->button('中间加分隔线');
+        $menu3 = Dropdown::make([1, 2, 3, Dropdown::DIVIDER, 4, 5])->button('中间加分隔线');
 
         return Box::make(
             'Example1',
@@ -47,7 +47,7 @@ class DropdownMenuController extends Controller
 
     protected function example2()
     {
-        $menu = DropdownMenu::make($this->tian);
+        $menu = Dropdown::make($this->tian);
 
         $menu->map(function ($v, $k) {
             if ($k === 7) {
@@ -64,7 +64,7 @@ class DropdownMenuController extends Controller
 
     protected function example3()
     {
-        $menu1 = DropdownMenu::make()
+        $menu1 = Dropdown::make()
             ->options($this->tian, '天干')
             ->options($this->di, '地支')
             ->click()
