@@ -6,7 +6,7 @@ use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Code;
-use Dcat\Admin\Widgets\DropdownMenu;
+use Dcat\Admin\Widgets\Dropdown;
 use Dcat\Admin\Widgets\Navbar;
 use Dcat\Admin\Widgets\NavList;
 use Faker\Factory;
@@ -49,8 +49,8 @@ class NavbarController extends Controller
 
                         return $v;
                     })
-                    ->dropdown(null, ['dropdown1', 'dropdown2', 'dropdown3',], function (DropdownMenu $dropdownMenu) {
-                        $dropdownMenu->click();
+                    ->dropdown(null, ['dropdown1', 'dropdown2', 'dropdown3',], function (Dropdown $Dropdown) {
+                        $Dropdown->click();
                     });
 
                 $row->column(4, $navbar);
