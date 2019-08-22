@@ -9,7 +9,7 @@ use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Card;
 use Dcat\Admin\Widgets\Code;
-use Dcat\Admin\Widgets\DropdownMenu;
+use Dcat\Admin\Widgets\Dropdown;
 use Illuminate\Routing\Controller;
 
 class LoadingController extends Controller
@@ -30,7 +30,7 @@ class LoadingController extends Controller
         'Purple',
         'Red',
         'Gray',
-        DropdownMenu::DIVIDER,
+        Dropdown::DIVIDER,
         'Transparent',
     ];
 
@@ -57,7 +57,7 @@ class LoadingController extends Controller
 HTML;
             })
                 ->id('loadingtest')
-                ->tool($this->buildDropdownMenu())
+                ->tool($this->buildDropdown())
                 ->tool('<a class="btn btn-light btn-sm" onclick="LA.loading();setTimeout(function () { LA.loading(false); }, 2000)">Auto Center</a>');
 
             Admin::script(
@@ -93,13 +93,13 @@ HTML
     /**
      * 创建下拉菜单
      *
-     * @return DropdownMenu
+     * @return Dropdown
      */
-    protected function buildDropdownMenu()
+    protected function buildDropdown()
     {
         $map = $this->colorMap;
 
-        return DropdownMenu::make($this->options)
+        return Dropdown::make($this->options)
             ->click()
             ->buttonClass('btn btn-sm btn-light')
             ->map(function ($label) use ($map) {
