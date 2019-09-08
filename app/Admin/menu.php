@@ -63,8 +63,8 @@ return [
         'parent_id' => 1,
     ],
     [
-        'id'        => 'dialogf',
-        'title'     => 'Dialog Form',
+        'id'        => 'modalf',
+        'title'     => 'Modal Form',
         'icon'      => ' ti-new-window',
         'uri'       => 'components/modal-form',
         'parent_id' => 1,

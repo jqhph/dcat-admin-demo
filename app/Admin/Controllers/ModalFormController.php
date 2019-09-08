@@ -13,7 +13,7 @@ class ModalFormController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Dialog Form')
+            ->header('Modal Form')
             ->description('在 <b>Dcat Admin</b> 中只需要使用数行代码即可构建出一个<b>非iframe</b>表单弹窗。')
             ->body($this->build());
     }
