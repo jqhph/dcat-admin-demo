@@ -123,13 +123,13 @@ class GridController extends Controller
 
         $grid->checkbox->checkbox(['GET', 'POST', 'PUT', 'DELETE']);
 
-        $grid->radio->display(function ($v, Grid\Column $column) {
-            if ($this->id != mt_rand(3, 5)) {
-                return $column->radio(['PHP', 'JAVA', 'GO', 'C']);
-            }
-
-            return '<i>None</i>';
-        });
+        $grid->radio
+            ->if(function () {
+                return $this->id != mt_rand(3, 5);
+            })
+            ->radio(['PHP', 'JAVA', 'GO', 'C'])
+            ->else()
+            ->display('<i>None</i>');
 
         return $grid;
     }
