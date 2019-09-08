@@ -29,6 +29,9 @@ use Dcat\Admin\Repositories\Repository;
 // 监听器
 Repository::listen('*', App\Admin\Event\RepositoryListener::class);
 
+Admin::booting(function () {
+
+});
 
 // 这里加载所有皮肤，只是为了换肤切换效果，实际使用不需要加载所有皮肤
 Admin::css('vendor/dcat-admin/AdminLTE/dist/css/skins/skin-blue-light.min.css');
@@ -67,6 +70,7 @@ HTML
 });
 
 Admin::section(function (\Dcat\Admin\Layout\SectionManager $manager) {
+    return;
     // 右边菜单按钮
     $manager->inject(\AdminSection::NAVBAR_AFTER_USER_PANEL, function () {
         return <<<'HTML'

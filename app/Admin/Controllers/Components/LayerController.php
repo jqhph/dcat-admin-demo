@@ -6,7 +6,7 @@ use Dcat\Admin\Admin;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Code;
-use Dcat\Admin\Widgets\DropdownMenu;
+use Dcat\Admin\Widgets\Dropdown;
 use Illuminate\Routing\Controller;
 
 class LayerController extends Controller
@@ -28,7 +28,7 @@ class LayerController extends Controller
         };
 
         $menuButtons = array_map(function ($btn) use ($menuBuilder) {
-            return DropdownMenu::make($this->positionMap)
+            return Dropdown::make($this->positionMap)
                 ->withoutTextButton()
                 ->buttonClass("btn btn-$btn")
                 ->map(function ($position) use ($btn, $menuBuilder) {

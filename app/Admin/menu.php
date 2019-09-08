@@ -66,7 +66,7 @@ return [
         'id'        => 'dialogf',
         'title'     => 'Dialog Form',
         'icon'      => ' ti-new-window',
-        'uri'       => 'components/dialog-form',
+        'uri'       => 'components/modal-form',
         'parent_id' => 1,
     ],
     [

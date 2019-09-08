@@ -17,6 +17,7 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
+
     $router->resource('posts', 'PostsController');
 
     // 布局示例
@@ -34,8 +35,8 @@ Route::group([
     $router->post('components/form', 'FormController@index');
     $router->get('components/form/preview', 'FormController@preview');
     // 表单弹窗
-    $router->get('components/dialog-form', 'DialogFormController@index');
-    $router->get('components/dialog-form/preview', 'DialogFormController@preview');
+    $router->get('components/modal-form', 'ModalFormController@index');
+    $router->get('components/modal-form/preview', 'ModalFormController@preview');
 
     // 其余组件
     $router->get('components/charts', 'Components\ChartController@index');
@@ -67,4 +68,5 @@ Route::group([
 
     $router->get('/extensions/ueditor', 'Extensions\UeditorController@index');
     $router->get('/extensions/ueditor/preview', 'Extensions\UeditorController@preview');
+
 });

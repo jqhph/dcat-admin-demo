@@ -11,7 +11,6 @@ use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Form;
 use Dcat\Admin\Widgets\Tab;
 use Faker\Factory;
-use Illuminate\Support\Facades\Input;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 use Symfony\Component\VarDumper\VarDumper;
@@ -23,7 +22,7 @@ class FormController extends Controller
     public function index(Content $content)
     {
         if (request()->getMethod() == 'POST') {
-            $content->row(Box::make('POST', $this->dump(Input::all()))->style('default'));
+            $content->row(Box::make('POST', $this->dump(request()->all()))->style('default'));
         }
 
         $content->row('<div style="margin:5px 0 15px;">'.$this->buildPreviewButton().'</div>');

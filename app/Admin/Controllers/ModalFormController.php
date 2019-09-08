@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Dcat\Admin\Form;
 use Dcat\Admin\Layout\Content;
 
-class DialogFormController extends Controller
+class ModalFormController extends Controller
 {
     use PreviewCode;
 
@@ -20,7 +20,7 @@ class DialogFormController extends Controller
 
     protected function build()
     {
-        Form::popup('新增角色')
+        Form::modal('新增角色')
             ->click('.create-form') // 绑定点击按钮
             ->url('auth/roles/create') // 表单页面链接，此参数会被按钮中的 “data-url” 属性替换。。
             ->width('700px') // 指定弹窗宽度，可填写百分比，默认 720px
@@ -28,7 +28,7 @@ class DialogFormController extends Controller
             ->success('LA.reload()') // 新增成功后刷新页面
             ->render();
 
-        Form::popup('编辑角色')
+        Form::modal('编辑角色')
             ->click('.edit-form')
             ->success('LA.reload()') // 编辑成功后刷新页面
             ->render();
