@@ -24,7 +24,7 @@ class ComingSoon extends Repository
         $perPage = $model->getPerPage();
 
         // 获取筛选参数
-        $city = $model->getFilter()->input(Grid\Filter\Scope::QUERY_NAME, '广州');
+        $city = $model->filter()->input(Grid\Filter\Scope::QUERY_NAME, '广州');
 
         $start = ($currentPage - 1) * $perPage;
 

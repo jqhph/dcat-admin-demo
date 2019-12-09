@@ -8,18 +8,77 @@ return [
         'uri'       => 'layout',
         'parent_id' => 0,
     ],
+
+    /////////////////////////////////////////////////////
     [
-        'id'        => 'simple',
-        'title'     => 'Simple Page',
-        'icon'      => 'fa-cut',
-        'uri'       => 'simple',
+        'id'        => 'tables',
+        'title'     => 'Table',
+        'icon'      => '  ti-view-grid',
+        'uri'       => '',
         'parent_id' => 0,
     ],
+
+    [
+        'id'        => 'grid',
+        'title'     => 'Default',
+        'icon'      => 'fa-table',
+        'uri'       => 'components/grid',
+        'parent_id' => 'tables',
+    ],
+
     [
         'id'        => 'reports',
         'title'     => 'Reports',
         'icon'      => 'fa-align-left',
         'uri'       => 'reports',
+        'parent_id' => 'tables',
+    ],
+
+
+    [
+        'id'        => 'selector',
+        'title'     => 'Selector',
+        'icon'      => '   fa-filter',
+        'uri'       => 'tables/selector',
+        'parent_id' => 'tables',
+    ],
+
+    ///////////////////////////////
+
+    [
+        'id'        => 'form',
+        'title'     => 'Form',
+        'icon'      => 'ti-pencil-alt',
+        'uri'       => '',
+        'parent_id' => 0,
+    ],
+    [
+        'id'        => 'form1',
+        'title'     => '普通表单',
+        'icon'      => 'ti-pencil-alt',
+        'uri'       => 'form',
+        'parent_id' => 'form',
+    ],
+    [
+        'id'        => 'modalf',
+        'title'     => '弹窗表单',
+        'icon'      => ' ti-new-window',
+        'uri'       => 'form/modal',
+        'parent_id' => 'form',
+    ],
+    [
+        'id'        => 'stform',
+        'title'     => '分步表单',
+        'icon'      => ' fa-list-ol',
+        'uri'       => 'form/step',
+        'parent_id' => 'form',
+    ],
+
+    [
+        'id'        => 'simple',
+        'title'     => 'Simple Page',
+        'icon'      => 'fa-cut',
+        'uri'       => 'simple',
         'parent_id' => 0,
     ],
 
@@ -47,27 +106,6 @@ return [
         'icon'      => 'fa-building',
         'uri'       => '',
         'parent_id' => 0,
-    ],
-    [
-        'id'        => 'grid',
-        'title'     => 'Grid',
-        'icon'      => 'fa-table',
-        'uri'       => 'components/grid',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'form',
-        'title'     => 'Form',
-        'icon'      => 'ti-pencil-alt',
-        'uri'       => 'components/form',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'modalf',
-        'title'     => 'Modal Form',
-        'icon'      => ' ti-new-window',
-        'uri'       => 'components/modal-form',
-        'parent_id' => 1,
     ],
     [
         'id'        => 'navbar',

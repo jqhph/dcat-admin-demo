@@ -6,7 +6,7 @@ use App\Admin\Controllers\PreviewCode;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
 use Dcat\Admin\Widgets\Box;
-use Dcat\Admin\Widgets\Colors;
+use Dcat\Admin\Widgets\Color;
 use Dcat\Admin\Widgets\Sparkline\Line;
 use Illuminate\Routing\Controller;
 use Dcat\Admin\Widgets\DataCard;
@@ -126,7 +126,7 @@ class DataCardController extends Controller
             ->dropdown(['今天', '最近30天', '最近3个月', '最近一年'], function ($v, $k) {
                 return "<a class='doughnut-card-item' data-condition='$v' href='javascript:void(0)'>{$v}</a>";
             })
-            ->dropdown(array_keys(Colors::$charts), function ($v, $k) {
+            ->dropdown(array_keys(Color::$chartTheme), function ($v, $k) {
                 $label = strtoupper($v);
                 return "<a class='dcolor-card-item' data-condition='$v' href='javascript:void(0)'>{$label}</a>";
             }, 'BLUE'); // 再设置一个下拉菜单，并设置按钮默认显示值
@@ -139,7 +139,7 @@ class DataCardController extends Controller
             ->dropdown(['今天', '最近30天', '最近3个月', '最近一年'], function ($v, $k) {
                 return "<a class='pie-card-item' data-condition='$v' href='javascript:void(0)'>{$v}</a>";
             })
-            ->dropdown(array_keys(Colors::$charts), function ($v, $k) {
+            ->dropdown(array_keys(Color::$chartTheme), function ($v, $k) {
                 $label = strtoupper($v);
                 return "<a class='pcolor-card-item' data-condition='$v' href='javascript:void(0)'>{$label}</a>";
             }, 'BLUE');
@@ -154,7 +154,7 @@ class DataCardController extends Controller
             ->dropdown(['今天', '最近30天', '最近3个月', '最近一年'], function ($v, $k) {
                 return "<a class='polar-card-item' data-condition='$v' href='javascript:void(0)'>{$v}</a>";
             })
-            ->dropdown(array_keys(Colors::$charts), function ($v, $k) {
+            ->dropdown(array_keys(Color::$chartTheme), function ($v, $k) {
                 $label = strtoupper($v);
                 return "<a class='pacolor-card-item' data-condition='$v' href='javascript:void(0)'>{$label}</a>";
             }, 'BLUE');
@@ -181,7 +181,7 @@ class DataCardController extends Controller
             ->dot("运营转化 (<number>$b</number> - <number>$p2</number>%)")
             ->chart(null, [mt_rand(0, 88), mt_rand(0, 169)]); // 接口获取数据时第一个参数传 null 即可
 
-        if (isset(Colors::$charts[$condition])) {
+        if (isset(Color::$chartTheme[$condition])) {
             $card->$condition();
         }
 
@@ -207,7 +207,7 @@ class DataCardController extends Controller
             ->dot("运营转化 (<number>$b</number> - <number>$p2</number>%)")
             ->chart(null, [$a, $b]); // 接口获取数据时第一个参数传 null 即可
 
-        if (isset(Colors::$charts[$condition])) {
+        if (isset(Color::$chartTheme[$condition])) {
             $card->$condition();
         }
 
@@ -223,7 +223,7 @@ class DataCardController extends Controller
             })
             ->chart(null, [mt_rand(30, 189), mt_rand(30, 100)]); // 接口获取数据时第一个参数传 null 即可
 
-        if (isset(Colors::$charts[$condition])) {
+        if (isset(Color::$chartTheme[$condition])) {
             $card->$condition();
         }
 

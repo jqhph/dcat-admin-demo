@@ -83,7 +83,7 @@ class FormController extends Controller
         $form->datetime('form1.datetime', 'datetime');
         $form->dateRange('form1.date-start', 'form1.date-end', 'date range');
         $form->timeRange('form1.time-start', 'form1.time-end', 'time range');
-        $form->dateTimeRange('form1.datetime-start', 'form1.datetime-end', 'datetime range');
+        $form->datetimeRange('form1.datetime-start', 'form1.datetime-end', 'datetime range');
 
         $form->html(function () {
             return '~~~~~~~~~';

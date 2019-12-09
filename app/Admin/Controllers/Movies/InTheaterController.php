@@ -55,6 +55,7 @@ class InTheaterController extends ComingSoonController
 
         $grid->disableActions(false);
         $grid->disableViewButton();
+        $grid->showQuickEditButton();
 
         return $grid;
     }

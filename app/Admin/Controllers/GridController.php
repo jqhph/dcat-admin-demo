@@ -18,13 +18,15 @@ class GridController extends Controller
             ->disableFilter()
             ->disableFilterButton();
 
-        $filter = $grid->getFilter()
+        $filter = $grid->filter()
             ->withoutInputBorder()
             ->expand()
             ->resetPosition()
             ->hiddenResetButtonText();
 
-        return $content->header('Grid')
+        return $content
+            ->header('表格')
+            ->description('表格功能展示')
             ->body($filter)
             ->body($grid);
     }
@@ -96,28 +98,32 @@ class GridController extends Controller
         });
 
         $grid->id->code()->sortable();
+
         $grid->label->explode()->label();
+
         $grid->progressBar->progressBar()->sortable();
-        $grid->expand->expand(function (Grid\Displayers\Expand $expand) {
-            $faker = Factory::create();
-            $expand->button($faker->name);
 
-            $card = new Card(null, $faker->text(900));
+        $grid->expand
+            ->display(Factory::create()->name)
+            ->expand(function () {
+                $faker = Factory::create();
 
-            return "<div style='padding:10px 10px 0'>$card</div>";
-        });
+                $card = new Card(null, $faker->text(900));
+
+                return "<div style='padding:10px 10px 0'>$card</div>";
+            });
 
         $grid->select->select(['GET', 'POST', 'PUT', 'DELETE']);
 
         $grid->switch->switch();
 
-        $grid->switchGroup('Switch Group')->display(function ($v, Grid\Column $column) {
-            if ($this->id != mt_rand(3, 5)) {
-                return $column->switchGroup(['is_new', 'is_hot', 'published'], 'purple');
-            }
-
-            return '<i>None</i>';
-        });
+        $grid->switchGroup('Switch Group')
+            ->if(function () {
+                return $this->id != mt_rand(3, 5);
+            })
+            ->switchGroup(['is_new', 'is_hot', 'published'], 'purple')
+            ->else()
+            ->display('<i>None</i>');
 
         $grid->editable->editable('select', $this->getNames());
 

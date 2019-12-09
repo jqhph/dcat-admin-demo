@@ -20,7 +20,10 @@ class ReportController extends Controller
             return $this->grid()->render();
         });
 
-        return $content->header('报表')->body($tab->custom());
+        return $content
+            ->header('报表')
+            ->description('合并表头功能示例')
+            ->body($tab->custom());
     }
 
     protected function grid()

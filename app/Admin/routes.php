@@ -31,12 +31,23 @@ Route::group([
     $router->resource('components/grid', 'GridController', ['except' => ['create', 'show', 'destroy']]);
     $router->get('components/grid/preview', 'GridController@preview');
     // form
-    $router->get('components/form', 'FormController@index');
-    $router->post('components/form', 'FormController@index');
-    $router->get('components/form/preview', 'FormController@preview');
+    $router->get('form', 'FormController@index');
+    $router->post('form', 'FormController@index');
+    $router->get('form/preview', 'FormController@preview');
+
+    // 分步表单
+    $router->get('form/step/preview', 'StepFormController@preview');
+    $router->get('form/step', 'StepFormController@index');
+    $router->post('form/step', 'StepFormController@store');
+
     // 表单弹窗
-    $router->get('components/modal-form', 'ModalFormController@index');
-    $router->get('components/modal-form/preview', 'ModalFormController@preview');
+    $router->get('form/modal', 'ModalFormController@index');
+    $router->get('form/modal/preview', 'ModalFormController@preview');
+
+
+    // 表格
+    $router->get('tables/selector', 'SelectorController@index');
+    $router->get('tables/selector/preview', 'SelectorController@preview');
 
     // 其余组件
     $router->get('components/charts', 'Components\ChartController@index');
