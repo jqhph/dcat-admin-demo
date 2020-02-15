@@ -18,13 +18,15 @@ class DropdownMenuController extends Controller
     public function index(Content $content)
     {
         return $content->header('Dropdown Menu')
-            ->row(function (Row $row) {
+            ->body(function (Row $row) {
                 $row->column(3, $this->example1());
                 $row->column(3, $this->example2());
                 $row->column(3, $this->example3());
             })
-            ->row(Box::make('代码', new Code(__FILE__, 1, 1000))->style('default'));
-
+            ->body(
+                Box::make('代码', new Code(__FILE__, 1, 1000))
+                    ->style('default')
+            );
     }
 
     protected function example1()
@@ -85,6 +87,4 @@ SCRIPT
 
         return Box::make('Example3', $menu1);
     }
-
-
 }

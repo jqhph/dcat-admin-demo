@@ -14,7 +14,7 @@ class TooltipController extends Controller
     public function index(Content $content)
     {
         $header = 'Tooltip';
-        $text   = 'Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. ';
+        $text = 'Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. ';
 
         Tooltip::make('.tt-left')
             ->left()
@@ -39,7 +39,6 @@ class TooltipController extends Controller
             ->content($text)
             ->render();
 
-
         return $content
             ->header($header)
             ->body(function (Row $row) {
@@ -58,10 +57,4 @@ HTML;
             })
             ->body(Box::make('代码', Code::make(__FILE__, 14, 65)));
     }
-
-
-
-
-
-
 }

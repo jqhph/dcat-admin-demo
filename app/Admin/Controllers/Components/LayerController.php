@@ -76,5 +76,4 @@ EOF
 
         return $content->header($header);
     }
-
 }

@@ -14,7 +14,13 @@ class CheckboxController extends Controller
     use PreviewCode;
 
     protected $colors = [
-        'Default', 'Primary', 'Success', 'Info', 'Danger', 'Purple', 'Inverse',
+        'Default',
+        'Primary',
+        'Success',
+        'Info',
+        'Danger',
+        'Purple',
+        'Inverse',
     ];
 
     protected function block1()
@@ -102,6 +108,5 @@ class CheckboxController extends Controller
             ->row($this->block2())
             ->row($this->block3());
     }
-
 }
 

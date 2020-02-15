@@ -47,7 +47,6 @@ class FormController extends Controller
             ->header('Form');
     }
 
-
     protected function form1()
     {
         $form = new Form();
@@ -168,5 +167,4 @@ class FormController extends Controller
         ob_end_clean();
         return $content;
     }
-
 }

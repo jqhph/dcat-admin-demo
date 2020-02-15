@@ -14,28 +14,48 @@ class GridController extends Controller
 
     public function index(Content $content)
     {
-        $grid = $this->grid()
-            ->disableFilter()
-            ->disableFilterButton();
-
-        $filter = $grid->filter()
-            ->withoutInputBorder()
-            ->expand()
-            ->resetPosition()
-            ->hiddenResetButtonText();
-
         return $content
             ->header('表格')
             ->description('表格功能展示')
-            ->body($filter)
-            ->body($grid);
+            ->body($this->grid());
     }
 
     protected function grid()
     {
-        $grid = new Grid;
+        $grid = new Grid();
 
-        $grid->disableQuickCreateButton();
+        $grid->id->code()->sortable();
+        $grid->label->explode()->label();
+        $grid->progressBar->progressBar()->sortable();
+        $grid->expand
+            ->display(Factory::create()->name)
+            ->expand(function () {
+                $faker = Factory::create();
+
+                $card = new Card(null, $faker->text(900));
+
+                return "<div style='padding:10px 10px 0'>$card</div>";
+            });
+        $grid->select->select(['GET', 'POST', 'PUT', 'DELETE']);
+        $grid->switch->switch();
+        $grid->switchGroup('Switch Group')
+            ->if(function () {
+                return $this->id != mt_rand(3, 5);
+            })
+            ->switchGroup(['is_new', 'is_hot', 'published'], 'purple')
+            ->else()
+            ->display('<i>None</i>');
+
+        $grid->editable->editable('select', $this->genernateNames());
+        $grid->checkbox->checkbox(['GET', 'POST', 'PUT', 'DELETE']);
+        $grid->radio
+            ->if(function () {
+                return $this->id != mt_rand(3, 5);
+            })
+            ->radio(['PHP', 'JAVA', 'GO', 'C'])
+            ->else()
+            ->display('<i>None</i>');
+
         $grid->disableCreateButton();
         $grid->disableActions();
         $grid->disableBatchDelete();
@@ -43,7 +63,7 @@ class GridController extends Controller
         $grid->disableExporter();
 
         // 设置表格数据
-        $grid->model()->setData($this->fetch());
+        $grid->model()->setData($this->generate());
 
         $grid->tools(function (Grid\Tools $tools) {
             $tools->append($this->buildPreviewButton(true));
@@ -66,16 +86,9 @@ class GridController extends Controller
             $filter->group('id', $group)->width('350px');
             $filter->group('date', $group)->date()->width('350px');
 
-//            $filter->newline();
-
             $filter->equal('select')->select(range(1, 10));
             $filter->in('multiple', 'Multiple Select')->multipleSelect(range(1, 10));
-
-//            $filter->newline();
-
-            $filter->between('between', 'Between')->width(4)->datetime();
-
-//            $filter->newline();
+            $filter->between('between', 'Between')->datetime();
 
             $options = function ($keys) {
                 if (!$keys) return $keys;
@@ -93,49 +106,7 @@ class GridController extends Controller
                 ->selectResource('auth/users')
                 ->multiple(2)
                 ->options($options);
-
-//            $filter->newline();
         });
-
-        $grid->id->code()->sortable();
-
-        $grid->label->explode()->label();
-
-        $grid->progressBar->progressBar()->sortable();
-
-        $grid->expand
-            ->display(Factory::create()->name)
-            ->expand(function () {
-                $faker = Factory::create();
-
-                $card = new Card(null, $faker->text(900));
-
-                return "<div style='padding:10px 10px 0'>$card</div>";
-            });
-
-        $grid->select->select(['GET', 'POST', 'PUT', 'DELETE']);
-
-        $grid->switch->switch();
-
-        $grid->switchGroup('Switch Group')
-            ->if(function () {
-                return $this->id != mt_rand(3, 5);
-            })
-            ->switchGroup(['is_new', 'is_hot', 'published'], 'purple')
-            ->else()
-            ->display('<i>None</i>');
-
-        $grid->editable->editable('select', $this->getNames());
-
-        $grid->checkbox->checkbox(['GET', 'POST', 'PUT', 'DELETE']);
-
-        $grid->radio
-            ->if(function () {
-                return $this->id != mt_rand(3, 5);
-            })
-            ->radio(['PHP', 'JAVA', 'GO', 'C'])
-            ->else()
-            ->display('<i>None</i>');
 
         return $grid;
     }
@@ -153,7 +124,7 @@ class GridController extends Controller
      *
      * @return array
      */
-    public function fetch() {
+    public function generate() {
         $faker = Factory::create();
 
         $data = [];
@@ -187,7 +158,7 @@ class GridController extends Controller
      *
      * @return array
      */
-    protected function getNames()
+    protected function genernateNames()
     {
         $faker = Factory::create();
 

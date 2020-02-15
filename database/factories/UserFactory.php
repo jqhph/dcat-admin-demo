@@ -2,8 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\User;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +16,13 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(\Dcat\Admin\Models\Administrator::class, function (Faker $faker) {
     return [
+        'username' => $faker->unique()->userName.Str::random(4),
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'avatar' => null,
+        'remember_token' => null,
+        'password' => '$2y$10$WdZ.V.KuwbgQI6Nl.ODz..aSV0sS2FwUYPKKbrFzwum8WpGrA7OYO', // password
+        'created_at' => now(),
     ];
 });

@@ -1,8 +1,8 @@
 (function ($) {
     function Uploader(opts) {
         opts = $.extend({
-            wrapper: '#uploader', // 图片显示容器选择器
-            addFileButton: '#add-file-button', // 继续添加按钮选择器
+            wrapper: '.web-uploader', // 图片显示容器选择器
+            addFileButton: '.add-file-button', // 继续添加按钮选择器
             isImage: false,
             preview: [], // 数据预览
             deleteUrl: '',
@@ -61,8 +61,9 @@
             }
         }, opts);
 
-        var updateColumn = opts.upload.formData.upload_column || ('webup' + Math.floor(Math.random()*10000));
-        var elementName = opts.elementName;
+        var $selector = $(opts.selector),
+            updateColumn = opts.upload.formData.upload_column || ('webup' + Math.floor(Math.random()*10000)),
+            elementName = opts.elementName;
 
         if (typeof opts.upload.formData._id == "undefined" || !opts.upload.formData._id) {
             opts.upload.formData._id = updateColumn + Math.floor(Math.random()*10000);
@@ -94,7 +95,7 @@
             originalFilesNum = LA.len(opts.preview),
 
             // 上传表单
-            $input = $('input[name="' + elementName + '"]'),
+            $input = $selector.find('input[name="' + elementName + '"]'),
 
             // 获取文件视图选择器
             getFileViewSelector = function (fileId) {
@@ -181,9 +182,9 @@
                     '</li>');
 
                 $btns = $('<div class="file-panel">' +
-                    '<a class=\'btn btn-xs btn-default\' data-action="cancel"><i class="fa fa-close red-dark" style=\'font-size:13px\'></i></a>' +
-                    '<a class=\'btn btn-xs btn-default\' data-action="delete" style="display: none"><i class="ti-trash red-dark" style=\'font-size:13px\'></i></a>' +
-                    '<a class=\'btn btn-xs btn-default\' data-action="preview" ><i class="glyphicon glyphicon-zoom-in"></i></a>' +
+                    '<a class=\'btn btn-xs btn-default\' data-file-act="cancel"><i class="fa fa-close red-dark" style=\'font-size:13px\'></i></a>' +
+                    '<a class=\'btn btn-xs btn-default\' data-file-act="delete" style="display: none"><i class="ti-trash red-dark" style=\'font-size:13px\'></i></a>' +
+                    '<a class=\'btn btn-xs btn-default\' data-file-act="preview" ><i class="glyphicon glyphicon-zoom-in"></i></a>' +
                     '</div>').appendTo($li);
             } else {
                 $li = $('<li id="' + getFileViewSelector(file.id) + '" title="' + file.name + '">' +
@@ -191,8 +192,8 @@
                     file.name + ' (' + size + ')</p>' +
                     '</li>');
 
-                $btns = $('<span data-action="cancel" class="_act" style="font-size:13px"><i class=\'ti-close red-dark\'></i></span>' +
-                    '<span data-action="delete" class="_act" style="display:none"><i class=\'ti-trash red-dark\'></i></span>'
+                $btns = $('<span data-file-act="cancel" class="_act" style="font-size:13px"><i class=\'ti-close red-dark\'></i></span>' +
+                    '<span data-file-act="delete" class="_act" style="display:none"><i class=\'ti-trash red-dark\'></i></span>'
                 ).appendTo($li);
             }
 
@@ -275,8 +276,8 @@
                 if (prev === 'progress') {
                     // $prgress.hide().width(0);
                 } else if (prev === 'queued') {
-                    $btns.find('[data-action="cancel"]').hide();
-                    $btns.find('[data-action="delete"]').show();
+                    $btns.find('[data-file-act="cancel"]').hide();
+                    $btns.find('[data-file-act="delete"]').show();
                 }
 
                 // 成功
@@ -304,12 +305,13 @@
             var $act = showImg ? $btns.find('a') : $btns;
 
             $act.on('click', function () {
-                var index = $(this).data('action');
+                var index = $(this).data('file-act');
 
                 switch (index) {
                     case 'cancel':
                         uploader.removeFile(file);
                         return;
+                    case 'deleteurl':
                     case 'delete':
                         if (opts.disableRemove) {
                             return uploader.removeFile(file);
@@ -321,12 +323,13 @@
                         if (!post.key) {
                             return uploader.removeFile(file);
                         }
-                        post[updateColumn] = '';
+                        post._column = updateColumn;
 
                         LA.loading();
                         $.post(opts.deleteUrl, post, function (result) {
                             LA.loading(false);
                             if (result.status) {
+                                deleteInput(file.serverId);
                                 uploader.removeFile(file);
                                 return;
                             }
@@ -414,7 +417,7 @@
                     text = __('selected_has_failed', {success: stats.successNum, fail: stats.uploadFailNum});
                 }
             } else {
-               showSuccess();
+                showSuccess();
             }
 
             function showSuccess() {
@@ -477,20 +480,20 @@
 
                 case 'ready':
                     $placeHolder.addClass('element-invisible');
-                    $(addFileButtonSelector).removeClass('element-invisible');
+                    $selector.find(addFileButtonSelector).removeClass('element-invisible');
                     $queue.show();
                     if (!opts.disabled) {
                         $statusBar.removeClass('element-invisible');
                     }
                     refreshButton();
                     if (showImg) {
-                        $wrap.find('.queueList').css({'border': '1px solid var(--50)', 'padding':'5px'});
+                        $wrap.find('.queueList').css({'border': '1px solid #d3dde5', 'padding':'5px'});
                         // $wrap.find('.queueList').removeAttr('style');
                     }
                     break;
 
                 case 'uploading':
-                    $(addFileButtonSelector).addClass('element-invisible');
+                    $selector.find(addFileButtonSelector).addClass('element-invisible');
                     $progress.show();
                     $upload.text(__('pause_upload'));
                     break;
@@ -503,7 +506,7 @@
                 case 'confirm':
                     if (uploader) {
                         $progress.hide();
-                        $(addFileButtonSelector).removeClass('element-invisible');
+                        $selector.find(addFileButtonSelector).removeClass('element-invisible');
                         $upload.text(__('start_upload'));
 
                         stats = uploader.getStats();
@@ -643,9 +646,7 @@
 
         // 重新计算按钮定位
         function refreshButton() {
-            setTimeout(function () {
-                uploader.refresh();
-            }, 400);
+            uploader.refresh();
         }
 
         // 添加上传成功文件到表单区域
@@ -658,7 +659,7 @@
                 html += "	<img src='" + file.serverUrl + "'>";
                 html += "</p>";
             } else if (!opts.disabled) {
-                html += '<p class="_act" data-action=\'delete\' data-id="' + file.serverId + '"><i class=\'ti-trash red-dark\'></i></p>';
+                html += '<p class="_act" data-file-act=\'delete\' data-id="' + file.serverId + '"><i class=\'ti-trash red-dark\'></i></p>';
             }
 
             html += "<p class='title' style=''><i class='ti-check green _success' style='font-weight:bold;font-size:17px;display:none'></i>";
@@ -670,9 +671,9 @@
                 html += "<div class='file-panel' >";
 
                 if (!opts.disabled) {
-                    html += "<a class='btn btn-xs btn-default' data-action='deleteurl' data-id='" + file.serverId + "'><i class='ti-trash red-dark' style='font-size:13px'></i></a>";
+                    html += "<a class='btn btn-xs btn-default' data-file-act='deleteurl' data-id='" + file.serverId + "'><i class='ti-trash red-dark' style='font-size:13px'></i></a>";
                 }
-                html += "<a class='btn btn-xs btn-default' data-action='preview' data-url='" + file.serverUrl + "' ><i class='glyphicon glyphicon-zoom-in'></i></a>";
+                html += "<a class='btn btn-xs btn-default' data-file-act='preview' data-url='" + file.serverUrl + "' ><i class='glyphicon glyphicon-zoom-in'></i></a>";
 
                 html += "</div>";
             }
@@ -686,17 +687,17 @@
                 $wrap.css('background', 'transparent');
             }
 
-            // 删除按钮点击事件
-            html.find('[data-action="deleteurl"]').click(function () {
+            var deleteFile = function () {
                 var fileId = $(this).data('id'), post = opts.deleteData;
 
                 if (opts.disableRemove) {
                     html.remove();
+
                     return removeFormFile(fileId);
                 }
 
                 post.key = fileId;
-                post[updateColumn] = null;
+                post._column = updateColumn;
 
                 LA.loading();
                 $.post(opts.deleteUrl, post, function (result) {
@@ -711,9 +712,15 @@
 
                     LA.error(result.message || 'Remove file failed.')
                 });
-            });
+            };
+
+            // 删除按钮点击事件
+            html.find('[data-file-act="deleteurl"]').click(deleteFile);
+            html.find('[data-file-act="delete"]').click(deleteFile);
+
+
             // 放大图片
-            html.find('[data-action="preview"]').click(function () {
+            html.find('[data-file-act="preview"]').click(function () {
                 var url = $(this).data('url');
 
                 LA.previewImage(url);
@@ -734,7 +741,7 @@
 
         // 初始化web-uploader
         function build() {
-            $wrap = $(opts.wrapper);
+            $wrap = $selector.find(opts.wrapper);
 
             // 图片容器
             $queue = $('<ul class="filelist"></ul>').appendTo($wrap.find('.queueList'));
@@ -861,7 +868,7 @@
                         if (!showImg) {
                             var $li = getFileView(obj.file.id);
                             $li.find('._act').hide();
-                            $li.find('[data-action="delete"]').show();
+                            $li.find('[data-file-act="delete"]').show();
                         }
 
                         break;

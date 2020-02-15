@@ -33,7 +33,7 @@ class SimpleController extends Controller
                 $form->selectResource('user')
                     ->path('auth/users')
                     ->multiple(3)
-                    ->setWidth(9);
+                    ->width(9);
 
                 $row->column(4, $form);
             })
@@ -114,6 +114,5 @@ protected function miniGrid()
 CODE;
 
         return Markdown::make($text);
-
     }
 }

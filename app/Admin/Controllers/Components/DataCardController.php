@@ -281,7 +281,6 @@ class DataCardController extends Controller
             ->toJsonResponse();
     }
 
-
     protected function box(string $title, array $cards, string $class = '')
     {
         return Box::make($title, function () use ($cards) {
@@ -301,5 +300,4 @@ class DataCardController extends Controller
             return mt_rand(1, 9);
         });
     }
-
 }

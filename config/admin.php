@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>Da</b>',
+    'logo-mini' => 'Da',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +91,7 @@ return [
     |--------------------------------------------------------------------------
     |
    */
-    'cdn' => false,
+    'cdn' => env('ADMIN_CDN', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -115,8 +115,13 @@ return [
     |
     */
     'auth' => [
+        'enable' => true,
 
         'controller' => Dcat\Admin\Controllers\AuthController::class,
+
+        'login_view' => 'admin.login',
+
+        'guard' => 'admin',
 
         'guards' => [
             'admin' => [
@@ -142,6 +147,25 @@ return [
             'auth/logout',
         ],
 
+    ],
+
+    'grid' => [
+
+        /*
+        |--------------------------------------------------------------------------
+        | The global Grid action display class.
+        |--------------------------------------------------------------------------
+        */
+        'grid_action_class' => Dcat\Admin\Grid\Displayers\DropdownActions::class,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | dcat-admin helpers setting.
+    |--------------------------------------------------------------------------
+    */
+    'helpers' => [
+        'enable' => true,
     ],
 
     /*
@@ -177,7 +201,7 @@ return [
         'cache' => [
             // enable cache or not
             'enable' => true,
-            'store' => 'file',
+            'store'  => 'file',
         ],
 
         // Whether enable menu bind to a permission.
@@ -241,6 +265,7 @@ return [
         'role_users_table'       => 'admin_role_users',
         'role_permissions_table' => 'admin_role_permissions',
         'role_menu_table'        => 'admin_role_menu',
+        'permission_menu_table'  => 'admin_permission_menu',
     ],
 
     /*
@@ -285,10 +310,10 @@ return [
     | @see https://adminlte.io/docs/2.4/layout
     |
     | Supported:
-    |    "skin-blue", "skin-blue-light", "skin-black-light".
+    |    "skin-blue-light", "skin-black", "skin-black-light".
     |
     */
-    'skin' => 'skin-black-light',
+    'skin' => 'skin-black',
 
     /*
     |--------------------------------------------------------------------------
@@ -302,7 +327,7 @@ return [
     | "sidebar-mini".
     |
     */
-    'layout' => ['sidebar-mini', 'fixed',],
+    'layout' => ['sidebar-mini', 'fixed'],
 
     /*
     |--------------------------------------------------------------------------
@@ -316,24 +341,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Show version at footer
+    | The exception handler class
     |--------------------------------------------------------------------------
-    |
-    | Whether to display the version number of dcat-admin at the footer of
-    | each page
     |
     */
-    'show_version' => true,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Show environment at footer
-    |--------------------------------------------------------------------------
-    |
-    | Whether to display the environment at the footer of each page
-    |
-    */
-    'show_environment' => true,
+    'exception_handler' => \Dcat\Admin\Exception\Handler::class,
 
     /*
     |--------------------------------------------------------------------------

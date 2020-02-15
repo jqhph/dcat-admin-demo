@@ -30,8 +30,4 @@ class AlertController extends Controller
         return $content->header($header);
 
     }
-
-
-
-
 }

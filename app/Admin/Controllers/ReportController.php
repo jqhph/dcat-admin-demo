@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Report;
 use App\Http\Controllers\Controller;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
 use Illuminate\Contracts\Support\Renderable;
@@ -14,6 +15,8 @@ class ReportController extends Controller
 
     public function index(Content $content)
     {
+        Admin::style('.tab-content .da-box{margin-bottom:0}');
+
         $tab = $this->buildPreviewTab(function ($tab) {
             $tab->padding('5px 0 0 ');
 
@@ -35,7 +38,7 @@ class ReportController extends Controller
         $grid->disableActions();
         $grid->disableBatchDelete();
         $grid->disableCreateButton();
-        $grid->disableQuickCreateButton();
+        $grid->disableCreateButton();
 
         $grid->setRowSelectorOptions(['style' => 'success', 'clicktr' => true]);
 
@@ -70,11 +73,8 @@ class ReportController extends Controller
 
             $filter->equal('content');
             $filter->equal('cost');
-
         });
 
         return $grid;
-
     }
-
 }

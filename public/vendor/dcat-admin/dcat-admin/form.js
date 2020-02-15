@@ -1,4 +1,4 @@
-(function (w) {
+(function () {
     /**
      * 表单提交
      *
@@ -15,7 +15,8 @@
             disableRedirect: false, //
             columnSelectors: {}, //
             disableRemoveError: false,
-            after: function (success, data) {},
+            before: function () {},
+            after: function () {},
         }, opts);
 
         var originalVals = {},
@@ -24,21 +25,27 @@
             tpl = opts.template,
             $form = opts.$form,
             tabSelector = '.tab-pane',
-            getTabId = function ($c) {
+            get_tab_id = function ($c) {
                 return $c.parents(tabSelector).attr('id');
             },
-            getTabTitleError = function ($c) {
-                var id = getTabId($c);
+            get_tab_title_error = function ($c) {
+                var id = get_tab_id($c);
                 if (!id) return $('<none></none>');
                 return $("[href='#" + id + "'] .text-red");
             };
+
+        var self = this;
 
         // 移除错误信息
         remove_field_error();
 
         $form.ajaxSubmit({
             beforeSubmit: function (d, f, o) {
-                if (call_events(LA._form_.before, d, f, o) === false) {
+                if (opts.before(d, f, o, self) === false) {
+                    return false;
+                }
+
+                if (fire(LA._form_.before, d, f, o, self) === false) {
                     return false;
                 }
 
@@ -47,11 +54,11 @@
             success: function (d) {
                 LA.NP.done();
 
-                if (opts.after(true, d) === false) {
+                if (opts.after(true, d, self) === false) {
                     return;
                 }
 
-                if (call_events(LA._form_.success, d) === false) {
+                if (fire(LA._form_.success, d, self) === false) {
                     return;
                 }
 
@@ -73,11 +80,11 @@
             error: function (v) {
                 LA.NP.done();
 
-                if (opts.after(false, v) === false) {
+                if (opts.after(false, v, self) === false) {
                     return;
                 }
 
-                if (call_events(LA._form_.error, v) === false) {
+                if (fire(LA._form_.error, v, self) === false) {
                     return;
                 }
 
@@ -101,13 +108,13 @@
         });
 
         // 触发钩子事件
-        function call_events(evs) {
-            var i, r, a = arguments, j, p = [];
-            delete a[0];
-            a = a || [];
+        function fire(evs) {
+            var i, j, r, args = arguments, p = [];
+            delete args[0];
+            args = args || [];
 
-            for (j in a) {
-                p.push(a[j]);
+            for (j in args) {
+                p.push(args[j]);
             }
 
             for (i in evs) {
@@ -125,7 +132,7 @@
                 p.removeClass(cls);
                 p.find('error').html('');
 
-                t = getTabTitleError($eColumns[i]);
+                t = get_tab_title_error($eColumns[i]);
                 if (!t.hasClass('hide')) {
                     t.addClass('hide');
                 }
@@ -139,7 +146,7 @@
         function show_field_error($form, column, errors) {
             var $c = get_field_obj($form, column);
 
-            getTabTitleError($c).removeClass('hide');
+            get_tab_title_error($c).removeClass('hide');
 
             // 保存字段原始数据
             originalVals[column] = get_val($c);
@@ -151,12 +158,12 @@
                 return;
             }
 
-            var p = $c.parents(groupSlt), j;
+            var p = $c.closest(groupSlt), j;
 
             p.addClass(cls);
 
             for (j in errors) {
-                p.find('error').append(tpl.replace('_message_', errors[j]));
+                p.find('error').eq(0).append(tpl.replace('_message_', errors[j]));
             }
 
             if (!opts.disableRemoveError) {
@@ -170,7 +177,11 @@
         function get_field_obj($form, column) {
             if (column.indexOf('.') != -1) {
                 column = column.split('.');
-                column = column[0] + '[' + column[1] + ']'
+                var first = column.shift(), i, sub = '';
+                for (i in column) {
+                    sub += '[' + column[i] + ']';
+                }
+                column = first + sub;
             }
 
             var $c = $form.find('[name="' + column + '"]');
@@ -182,6 +193,13 @@
             }
             if (!$c.length) {
                 $c = $form.find('[name="' + column.replace(/end$/, '') + '"]');
+            }
+
+            if (!$c.length) {
+                $c = $form.find('[name="' + column.replace(/start\]$/, ']') + '"]');
+            }
+            if (!$c.length) {
+                $c = $form.find('[name="' + column.replace(/end\]$/, ']') + '"]');
             }
 
             return $c;
@@ -236,9 +254,9 @@
                 p.find('error').html('');
 
                 // tab页下没有错误信息了，隐藏title的错误图标
-                var id = getTabId($c), t;
+                var id = get_tab_id($c), t;
                 if (id && !$('#'+id).find('.'+cls).length) {
-                    t = getTabTitleError($c);
+                    t = get_tab_title_error($c);
                     if (!t.hasClass('hide')) {
                         t.addClass('hide');
                     }
@@ -250,4 +268,4 @@
         }
 
     };
-})(window);
+})();

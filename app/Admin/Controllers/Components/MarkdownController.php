@@ -27,7 +27,6 @@ class MarkdownController extends Controller
         return $content->header($header);
     }
 
-
     protected function content()
     {
         return <<<TEXT
@@ -101,5 +100,4 @@ The Laravel framework is open-source software licensed under the [MIT license](h
 TEXT;
 
     }
-
 }

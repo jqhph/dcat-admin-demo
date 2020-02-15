@@ -16,6 +16,6 @@ class Top250Controller extends ComingSoonController
      */
     protected function grid($repository = null)
     {
-        return parent::grid(new Top250);
+        return parent::grid(new Top250());
     }
 }

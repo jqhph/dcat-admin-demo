@@ -40,8 +40,4 @@ class AccordionController extends Controller
             ->row(Box::make('代码', new Code(__FILE__, 15, 44))->style('default'));
 
     }
-
-
-
-
 }

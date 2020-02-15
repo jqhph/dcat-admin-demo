@@ -252,5 +252,4 @@ HTML;
     {
         return Box::make($title, $content)->style('default')->setHtmlAttribute('class', $class);
     }
-
 }

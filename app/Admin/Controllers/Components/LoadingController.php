@@ -109,8 +109,5 @@ HTML
 
                 return "<a data-color='{$map[$label]}' class='start_loading' href='javascript:void(0)'>$label</a>";
             });
-
     }
-
-
 }

@@ -18,8 +18,10 @@ class NavbarController extends Controller
     {
         return $content->header('Navbar')
             ->body(function (Row $row) {
-                $row->column(3, Box::make('# NAVLIST', function () {
-                    $nav = NavList::make(['a' => 'Link1' , 'b' => 'link2', ['github', 'https://www.github.com']])
+                $values = ['a' => 'text1' , 'b' => 'text2', 'c' => 'text3', 'd' => 'text4', ['github', 'https://www.github.com']];
+
+                $row->column(3, Box::make('# NAVLIST', function () use (&$values) {
+                    $nav = NavList::make($values)
                         ->checked('a')
                         ->click()
                         ->map(function ($v) {
@@ -37,7 +39,7 @@ class NavbarController extends Controller
                     return $nav;
                 })->padding(0)->style('default'));
 
-                $navbar = Navbar::make('# Navbar', ['a' => 'Link1' , 'b' => 'link2', ['github', 'https://www.github.com']])
+                $navbar = Navbar::make('# Navbar', $values)
                     ->checked('a')
                     ->click()
                     ->map(function ($v) {
@@ -58,7 +60,4 @@ class NavbarController extends Controller
             })
             ->body(Box::make('代码', new Code(__FILE__, 17, 63))->style('default'));
     }
-
-
-
 }

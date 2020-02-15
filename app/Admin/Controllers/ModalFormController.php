@@ -45,5 +45,4 @@ class ModalFormController extends Controller
 
 ";
     }
-
 }

@@ -46,11 +46,7 @@ class TabController extends Controller
 
                 $row->column(12, $tab);
             });
-
     }
-
-
-
 
     protected function buttons()
     {
@@ -128,6 +124,4 @@ class TabController extends Controller
 </p>
       ";
     }
-
-
 }

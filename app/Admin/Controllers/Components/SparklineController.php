@@ -15,14 +15,9 @@ class SparklineController extends Controller
     public function index(Content $content)
     {
         return $content->header('Sparkline')
-            ->row(function () {
-
-            })
-            ->row(Box::make('代码', new Code(__FILE__, 15, 35))->style('default'));
-
+            ->body(
+                Box::make('代码', new Code(__FILE__, 15, 35))
+                    ->style('default')
+            );
     }
-
-
-
-
 }

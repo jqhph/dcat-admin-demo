@@ -59,7 +59,7 @@ Admin::menu()->add(include __DIR__.'/menu.php', 0);
 Admin::navbar(function ($navbar) {
     $navbar->left(
         <<<'HTML'
-<div class="input-group input-sm navbar-search-from">
+<div class="input-group input-sm navbar-search-form">
     <input type="text" name="global" class="form-control" placeholder="Search...">
     <span class="input-group-btn">
         <button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>

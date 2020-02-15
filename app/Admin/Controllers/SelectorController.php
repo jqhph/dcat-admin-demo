@@ -22,7 +22,7 @@ class SelectorController extends Controller
 
     protected function grid()
     {
-        return Admin::grid(new TeaTable(), function (Grid $grid) {
+        return Grid::make(new TeaTable(), function (Grid $grid) {
             $grid->id('ID')->bold();
             $grid->name('名称');
             $grid->norms('规格');

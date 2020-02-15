@@ -55,7 +55,7 @@ class ComingSoonController extends Controller
      */
     protected function grid($repository = null)
     {
-        $grid = new Grid($repository ?: new ComingSoon);
+        $grid = new Grid($repository ?: new ComingSoon());
 
         $grid->wrap(function ($view) {
             return "<div class='card'>$view</div>";
@@ -74,7 +74,6 @@ class ComingSoonController extends Controller
         $grid->disableBatchDelete();
         $grid->disableExporter();
         $grid->disableCreateButton();
-        $grid->disableQuickCreateButton();
         $grid->disableFilterButton();
 
         // 开启 responsive 插件，并启用所有字段

@@ -51,7 +51,7 @@ class InTheaterController extends ComingSoonController
      */
     protected function grid($repository = null)
     {
-        $grid = parent::grid(new InTheater);
+        $grid = parent::grid(new InTheater());
 
         $grid->disableActions(false);
         $grid->disableViewButton();
@@ -62,7 +62,7 @@ class InTheaterController extends ComingSoonController
 
     protected function form()
     {
-        $form = new Form(new InTheater);
+        $form = new Form(new InTheater());
 
         $form->display('id', 'ID');
         $form->text('title')->rules('required');

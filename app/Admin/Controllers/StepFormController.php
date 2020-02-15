@@ -29,7 +29,7 @@ class StepFormController extends Controller
         $form->action('step');
         $form->disableListButton();
 
-        $form->step()
+        $form->multipleSteps()
             ->remember()
             ->width('950px')
             ->add('基本信息', function (Form\StepForm $step) {
@@ -104,16 +104,15 @@ JS;
     {
         return $this->form()->saving(function (Form $form) {
             // 清空缓存
-            $form->step()->flushStash();
+            $form->multipleSteps()->flushStash();
 
             // 拦截保存操作
             return response(
-                $form->step()
-                    ->getDoneStep()
+                $form->multipleSteps()
+                    ->doneStep()
                     ->finish()
                     ->render()
             );
         })->store();
     }
-
 }

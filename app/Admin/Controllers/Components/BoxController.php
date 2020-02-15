@@ -31,11 +31,5 @@ class BoxController extends Controller
         $content->breadcrumb($header);
 
         return $content->header($header);
-
     }
-
-
-
-
-
 }
