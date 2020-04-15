@@ -9,6 +9,11 @@
 composer install
 ```
 
+安装完之后，复制一份`.env.example`文件并命名为`.env`，然后运行
+```shell
+php artisan key:generate
+```
+
 然后配置好数据库连接信息运行以下命令
 
 > 这里会提示文件夹已存在，忽略即可。
