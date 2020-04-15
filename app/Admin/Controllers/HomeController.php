@@ -2,12 +2,12 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Metrics\Examples;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Controllers\Dashboard;
 use Dcat\Admin\Layout\Column;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Widgets\Box;
 
 class HomeController extends Controller
 {
@@ -16,32 +16,21 @@ class HomeController extends Controller
         return $content
             ->header('Dashboard')
             ->description('Description...')
-            ->row(Dashboard::title())
-            ->row(function (Row $row) {
+            ->body(function (Row $row) {
+                $row->column(6, function (Column $column) {
+                    $column->row(Dashboard::title());
+                    $column->row(new Examples\Tickets());
+                });
 
-                $row->column(
-                    4,
-                    Box::make('Environment', Dashboard::environment())
-                        ->padding('0')
-                        ->style('default')
-                        ->collapsable()
-                );
+                $row->column(6, function (Column $column) {
+                    $column->row(function (Row $row) {
+                        $row->column(6, new Examples\NewUsers());
+                        $row->column(6, new Examples\NewDevices());
+                    });
 
-                $row->column(
-                    4,
-                    Box::make('Dependencies', Dashboard::dependencies())
-                        ->padding('0')
-                        ->style('default')
-                        ->collapsable()
-                );
-
-                $row->column(
-                    4,
-                    Box::make('Extensions', Dashboard::extensions())
-                        ->padding('0')
-                        ->style('default')
-                        ->collapsable()
-                );
+                    $column->row(new Examples\Sessions());
+                    $column->row(new Examples\ProductOrders());
+                });
             });
     }
 }

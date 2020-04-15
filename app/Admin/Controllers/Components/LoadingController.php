@@ -17,11 +17,9 @@ class LoadingController extends Controller
     use PreviewCode;
 
     protected $colorMap = [
-        'Default' => 'var(--primary-60)',
         'Green'   => '#a9cf82',
         'Purple'  => '#919bd2',
         'Red'     => '#ff8e8e',
-        'Gray'    => 'var(--60)',
     ];
 
     protected $options = [
@@ -29,7 +27,6 @@ class LoadingController extends Controller
         'Green',
         'Purple',
         'Red',
-        'Gray',
         Dropdown::DIVIDER,
         'Transparent',
     ];
@@ -41,24 +38,35 @@ class LoadingController extends Controller
 
             $card = Card::make('Loading', function () {
                 return <<<HTML
-<div >
+<div class="mb-1">
      开启loading效果: &nbsp;<code>$('#loadingtest').loading();</code>
 </div>
-<div class="m-b-15">
+<div class="mb-1">
      销毁: &nbsp;<code>$('#loadingtest').loading(false);</code>
 </div>
 
-<div >
-     全屏居中: &nbsp;<code>LA.loading();</code>
+<hr>
+
+<div  class="mb-1">
+     全屏居中: &nbsp;<code>Dcat.loading();</code>
 </div>
-<div >
-     销毁: &nbsp;<code>LA.loading(false);</code>
+<div class="mb-1">
+     销毁: &nbsp;<code>Dcat.loading(false);</code>
+</div>
+
+<hr>
+
+<div class="mb-1">
+     按钮loading效果: &nbsp;<code>$('.btn').buttonLoading();</code>
+</div>
+<div class="mb-1">
+     销毁: &nbsp;<code>$('.btn').buttonLoading(false);</code>
 </div>
 HTML;
             })
                 ->id('loadingtest')
                 ->tool($this->buildDropdown())
-                ->tool('<a class="btn btn-light btn-sm" onclick="LA.loading();setTimeout(function () { LA.loading(false); }, 2000)">Auto Center</a>');
+                ->tool('<a class="btn btn-light btn-sm shadow-0" onclick="Dcat.loading();setTimeout(function () { Dcat.loading(false); }, 2000)">Auto Center</a>');
 
             Admin::script(
                 <<<JS
@@ -76,13 +84,31 @@ loading_test();
 $('.start_loading').click(function () {
     loading_test($(this).data());
 });
+
+$('.loading-1,.loading-2').click(function() {
+    var _this = $(this);
+    _this.buttonLoading();
+  
+    setTimeout(function() {
+        _this.buttonLoading(false);
+    }, 2500);
+});
+
 JS
             );
 
             $row->column(4, $card);
 
             $row->column(4, <<<HTML
-<span onclick="LA.NP.start()" class="btn btn-primary"> NProgress Start</span> &nbsp; <span onclick="LA.NP.done()" class="btn btn-success"> Done </span>
+<div class="mb-1">
+    <span onclick="Dcat.NP.start()" class="btn btn-primary"> NProgress Start</span> &nbsp; <span onclick="Dcat.NP.done()" class="btn btn-success"> Done </span>
+</div>
+
+<br class="mb-2">
+
+<div>
+<span class="btn btn-primary loading-1"> 按钮loading效果1</span> &nbsp;&nbsp; <a href="#" class="loading-2" onclick="Dcat.NP.done()" > 按钮loading效果2 </a> 
+</div>
 HTML
 );
         });
@@ -101,13 +127,15 @@ HTML
 
         return Dropdown::make($this->options)
             ->click()
-            ->buttonClass('btn btn-sm btn-light')
+            ->buttonClass('btn btn-sm btn-light shadow-0')
             ->map(function ($label) use ($map) {
                 if ($label === 'Transparent') {
-                    return "<a data-bg='rgba(255,255,255,.4)' data-color='var(--primary)' class='start_loading' href='javascript:void(0)'>$label</a>";
+                    return "<a data-background='rgba(255,255,255,.4)' data-color='var(--primary)' class='start_loading' href='javascript:void(0)'>$label</a>";
                 }
 
-                return "<a data-color='{$map[$label]}' class='start_loading' href='javascript:void(0)'>$label</a>";
+                $color = isset($map[$label]) ? "data-color='{$map[$label]}'" : '';
+
+                return "<a {$color} class='start_loading' href='javascript:void(0)'>$label</a>";
             });
     }
 }

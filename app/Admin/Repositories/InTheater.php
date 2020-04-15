@@ -25,7 +25,7 @@ class InTheater extends Repository
         $perPage = $model->getPerPage();
 
         // 获取筛选参数
-        $city = $model->filter()->input(Grid\Filter\Scope::QUERY_NAME, '广州');
+        $city = '广州';
 
         $start = ($currentPage - 1) * $perPage;
 
@@ -34,16 +34,10 @@ class InTheater extends Repository
         $response = $client->get("{$this->api}?{$this->apiKey}&city={$city}&start=$start&count=$perPage");
         $data = json_decode((string)$response->getBody(), true);
 
-        $paginator = new LengthAwarePaginator(
-            $data['subjects'] ?? [],
+        return $model->makePaginator(
             $data['total'] ?? 0,
-            $perPage, // 传入每页显示行数
-            $currentPage // 传入当前页码
+            $data['subjects'] ?? []
         );
-
-        $paginator->setPath(\url()->current());
-
-        return $paginator;
     }
 
     /**

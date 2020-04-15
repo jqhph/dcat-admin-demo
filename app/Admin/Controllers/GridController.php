@@ -46,7 +46,6 @@ class GridController extends Controller
             ->else()
             ->display('<i>None</i>');
 
-        $grid->editable->editable('select', $this->genernateNames());
         $grid->checkbox->checkbox(['GET', 'POST', 'PUT', 'DELETE']);
         $grid->radio
             ->if(function () {
@@ -60,7 +59,6 @@ class GridController extends Controller
         $grid->disableActions();
         $grid->disableBatchDelete();
         $grid->disablePagination();
-        $grid->disableExporter();
 
         // 设置表格数据
         $grid->model()->setData($this->generate());

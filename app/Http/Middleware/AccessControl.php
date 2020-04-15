@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Dcat\Admin\Auth\Permission;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AccessControl
@@ -15,12 +15,14 @@ class AccessControl
             'admin/auth/login',
             'admin/form/step',
             'admin/form',
+            'admin/dcat-api/value',
+            'admin/helpers/scaffold/table',
         ],
     ];
 
     public function handle(Request $request, \Closure $next)
     {
-        if (!config('app.deny_update')) {
+        if (! config('app.deny_update')) {
             return $next($request);
         }
 

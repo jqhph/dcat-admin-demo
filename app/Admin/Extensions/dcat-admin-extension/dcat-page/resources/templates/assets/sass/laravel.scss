@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+// base
+@import "core/settings";          // color + font variables
+@import "core/normalize";         // css reset
+@import "core/mixins";            // utilities
+@import "core/base";              // base helpers and typographical styles
+
+// third party components
+@import "components/bootstrap";   // buttons + dropdowns
+@import "components/prism-light";       // code highlighting
+@import "components/slide-menu";  // sliding sidebar nav
+
+// content components
+@import "components/buttons";     // modified bootstrap buttons
+@import "components/callouts";    // promos and things to catch they eye
+@import "components/packages";    // columns of cool laravel ecosystem packages
+@import "components/footer";      // the footer
+@import "components/nav";         // top nav
+@import "components/panels";      // homepage blocks
+@import "components/windows";     // browser + terminal containers
+@import "components/sidebar";
+@import "components/grid";
+@import "components/_toc";
+
+// content
+@import "content/home";
+@import "content/community";
+@import "content/docs";
+@import "content/404";
+
+#carbonads {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 14px 12px;
+  border: dashed 1px #e6e6e6;
+  text-align: center;
+  font-size: 12px;
+}
+
+#carbonads span {
+  display: block;
+  overflow: hidden;
+}
+
+.carbon-img {
+  display: block;
+  margin: 0 auto 8px;
+  line-height: 1!important;
+}
+
+.carbon-text {
+  display: block;
+  margin-bottom: 8px;
+  line-height: 1.7 !important;
+}
+
+.carbon-poweredby {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  font-size: 8px;
+  line-height: 1 !important;
+}
+
+.laracon-banner, .laracon-banner a, .laracon-banner a:visited {
+  font-family: $font;
+  font-size: 16px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .14)
+}
+
+.laracon-banner {
+  padding: 10px;
+  background: $banner_background;
+  text-align: center;
+  color: #D3E6FB
+}
+
+.laracon-banner a, .laracon-banner a:visited {
+  font-weight: 700;
+  color: #fff;
+  box-shadow: inset 0 -5px 0 #9691E4
+}
+
+.laracon-banner img {
+  vertical-align: middle;
+  padding-right: 5px
+}
+
+.fixed-bottom-btn {
+  height: 45px;
+  position: fixed;
+  right: 65px;
+  bottom: 30px;
+  z-index: 999
+}
+
+.fixed-bottom-btn a {
+  border-radius: 50%;
+  cursor: pointer;
+  background: $color__salmon;
+  display: none;
+  width: 45px;
+  height: 45px;
+  margin: .15rem 0;
+  text-align: center;
+  line-height: 43px;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .4);
+  position: fixed;
+  font-size: 13px;
+  color: #fff;
+}
+
+@media (min-width:960px) {
+  /* 兼容回到顶部按钮 */
+  .scotch-panel-canvas {
+    transform:none!important;
+  }
+}
+
+@media (max-width: 960px) {
+  .hidden-xs {
+    display: none!important;
+  }
+
+}

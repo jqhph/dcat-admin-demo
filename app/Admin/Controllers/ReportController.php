@@ -15,23 +15,15 @@ class ReportController extends Controller
 
     public function index(Content $content)
     {
-        Admin::style('.tab-content .da-box{margin-bottom:0}');
-
-        $tab = $this->buildPreviewTab(function ($tab) {
-            $tab->padding('5px 0 0 ');
-
-            return $this->grid()->render();
-        });
-
         return $content
             ->header('报表')
             ->description('合并表头功能示例')
-            ->body($tab->custom());
+            ->body($this->grid());
     }
 
     protected function grid()
     {
-        $grid = new Grid(new Report);
+        $grid = new Grid(new Report());
 
         // 开启responsive插件
         $grid->responsive();
@@ -40,16 +32,17 @@ class ReportController extends Controller
         $grid->disableCreateButton();
         $grid->disableCreateButton();
 
-        $grid->setRowSelectorOptions(['style' => 'success', 'clicktr' => true]);
+        $grid->rowSelector()
+            ->style('success')
+            ->click();
 
         // 更改表格外层容器
         $grid->wrap(function (Renderable $view) {
             return $view;
         });
 
-        $grid->combine('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->responsive()->help('test');
+        $grid->combine('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->responsive()->help('提示信息演示');
         $grid->combine('avgVist', ['avgMonthVist', 'avgQuarterVist', 'avgYearVist'])->responsive();
-        $grid->combine('top', ['topCost', 'topVist', 'topIncr'])->responsive()->style('color:#1867c0');
 
         $grid->content->limit(50)->responsive();
         $grid->cost->sortable()->responsive();
@@ -61,10 +54,9 @@ class ReportController extends Controller
         $grid->avgYearVist->responsive();
         $grid->incrs->hide();
         $grid->avgVists->hide();
-        $grid->topCost->responsive();
-        $grid->topVist->responsive();
-        $grid->topIncr->responsive();
         $grid->date->sortable()->responsive();
+
+        $grid->tools($this->buildPreviewButton());
 
         $grid->filter(function (Grid\Filter $filter) {
             $filter->scope(1, admin_trans_field('month'))->where('date', 2019, '<=');

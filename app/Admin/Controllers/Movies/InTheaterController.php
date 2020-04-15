@@ -27,9 +27,6 @@ class InTheaterController extends ComingSoonController
 
         return $content
             ->header($this->header)
-            ->body(function (Row $row) {
-                $row->column(5, $this->navbar());
-            })
             ->body($this->grid());
     }
 

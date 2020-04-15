@@ -27,12 +27,12 @@ class CheckboxController extends Controller
     {
         $checkbox = Checkbox::make('la1[]', $this->colors)
             ->inline()
-            ->checked([0, 5])
+            ->check([0, 5])
             ->render();
 
         $radio = Radio::make('la1', $this->colors)
             ->inline()
-            ->checked(0)
+            ->check(0)
             ->render();
 
         return Card::make('Block1', $checkbox . $this->newline() . $radio);
@@ -42,32 +42,31 @@ class CheckboxController extends Controller
     {
         $checkbox1 = Checkbox::make('__', [1 => 'Square1', 2 => 'Square2'])
             ->inline()
-            ->square()
-            ->checkedAll()
+            ->checkAll()
             ->render();
         $checkbox2 = Checkbox::make('__', [1 => 'Disabled'])
             ->inline()
-            ->checkedAll()
-            ->disabled()
+            ->checkAll()
+            ->disable()
             ->render();
         $radio1 = Radio::make('__1', [1 => 'Disabled'])
             ->inline()
-            ->checked(1)
-            ->disabled()
+            ->check(1)
+            ->disable()
             ->render();
 
         $colors = collect($this->colors)->map(function ($color) {
             return Checkbox::make('n', compact('color'))
                 ->style(strtolower($color))
                 ->inline()
-                ->checkedAll()
+                ->checkAll()
                 ->render();
         })->join('');
 
         $radios = collect($this->colors)->map(function ($color, $k) {
             return Radio::make('n'.$k, compact('color'))
                 ->style(strtolower($color))
-                ->checked(0)
+                ->check(0)
                 ->inline()
                 ->render();
         })->join('');
@@ -81,11 +80,11 @@ class CheckboxController extends Controller
     protected function block3()
     {
         $checkbox = Checkbox::make('la[]', $this->colors)
-            ->checkedAll([1, 4])
+            ->checkAll([1, 4])
             ->render();
 
         $radio = Radio::make('la', $this->colors)
-            ->checked(0)
+            ->check(0)
             ->render();
 
         return Card::make('Block3', $checkbox . '<div style="height:15px"></div>' . $radio);

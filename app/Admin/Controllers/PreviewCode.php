@@ -43,7 +43,7 @@ trait PreviewCode
      */
     public function preview(Content $content)
     {
-        return $content->simple()->body($this->code());
+        return $content->full()->body($this->code());
     }
 
     /**
@@ -57,11 +57,9 @@ trait PreviewCode
     }
 
     /**
-     * Build preview button.
-     *
      * @return string
      */
-    protected function buildPreviewButton($sm = false)
+    protected function buildPreviewButton()
     {
         $previewUrl = '/'.request()->path().'/preview';
 
@@ -79,9 +77,7 @@ SCRIPT
 
         );
 
-        $sm = $sm ? 'btn-sm' : '';
-
-        return "<span class='btn btn-custom $sm preview-code'> &nbsp;&nbsp;&nbsp;<i class=' fa  fa-code'></i>&nbsp;预览代码&nbsp;&nbsp;&nbsp; </span>";
+        return "<button class='btn btn-white preview-code'> &nbsp;&nbsp;&nbsp;<i class=' fa  fa-code'></i>&nbsp;预览代码&nbsp;&nbsp;&nbsp; </button>";
     }
 
     /**

@@ -1,0 +1,29 @@
+{
+    "name": "dcat-admin-extension/grid-sortable",
+    "description": "description...",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension", "grid-sortable"],
+    "homepage": "https://github.com/dcat-admin-extension/grid-sortable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jqh",
+            "email": "841324345@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "spatie/eloquent-sortable": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dcat\\Admin\\Extension\\GridSortable\\": "src/"
+        },
+         "files": [
+            "src/bootstrap.php"
+        ]
+    }
+}

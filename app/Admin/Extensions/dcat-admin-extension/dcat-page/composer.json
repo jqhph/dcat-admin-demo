@@ -1,0 +1,37 @@
+{
+    "name": "dcat/page",
+    "description": "为PHPer打造的静态站点构建工具。",
+    "type": "library",
+    "keywords": ["dcat-page", "dcat"],
+    "homepage": "https://github.com/jqhph/dcat-page",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jqh",
+            "email": "841324345@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "erusev/parsedown-extra": "^0.7.1",
+        "symfony/dom-crawler": "~3.1|~4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dcat\\Page\\": "src/"
+        },
+         "files": [
+            "src/Admin/bootstrap.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dcat\\Page\\DcatPageServiceProvider"
+            ]
+        }
+    }
+}

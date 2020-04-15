@@ -22,7 +22,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<span>Dcat</span> Admin',
+    'logo' => '<img src="/vendors/dcat-admin/images/logo.png" width="35"> &nbsp;Dcat Admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => 'Da',
+    'logo-mini' => '<img src="/vendors/dcat-admin/images/logo.png">',
 
     /*
     |--------------------------------------------------------------------------
@@ -117,9 +117,7 @@ return [
     'auth' => [
         'enable' => true,
 
-        'controller' => Dcat\Admin\Controllers\AuthController::class,
-
-        'login_view' => 'admin.login',
+        'controller' => App\Admin\Controllers\AuthController::class,
 
         'guard' => 'admin',
 
@@ -200,7 +198,7 @@ return [
     'menu' => [
         'cache' => [
             // enable cache or not
-            'enable' => true,
+            'enable' => false,
             'store'  => 'file',
         ],
 
@@ -283,6 +281,11 @@ return [
         // Only logging allowed methods in the list
         'allowed_methods' => ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'],
 
+        'secret_fields' => [
+            'password',
+            'password_confirmation',
+        ],
+
         // Routes that will not log to database.
         // All method to path like: auth/logs/*/edit
         // or specific method to path like: get:auth/logs.
@@ -303,31 +306,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Skin
-    |--------------------------------------------------------------------------
-    |
-    | This value is the skin of admin pages.
-    | @see https://adminlte.io/docs/2.4/layout
-    |
-    | Supported:
-    |    "skin-blue-light", "skin-black", "skin-black-light".
-    |
-    */
-    'skin' => 'skin-black',
-
-    /*
-    |--------------------------------------------------------------------------
     | Application layout
     |--------------------------------------------------------------------------
     |
     | This value is the layout of admin pages.
-    | @see https://adminlte.io/docs/2.4/layout
-    |
-    | Supported: "fixed", "layout-boxed", "layout-top-nav", "sidebar-collapse",
-    | "sidebar-mini".
-    |
     */
-    'layout' => ['sidebar-mini', 'fixed'],
+    'layout' => [
+        'body_class' => '',
+
+        'sidebar_collapsed' => false,
+
+        // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
+        'navbar_color' => '',
+    ],
 
     /*
     |--------------------------------------------------------------------------

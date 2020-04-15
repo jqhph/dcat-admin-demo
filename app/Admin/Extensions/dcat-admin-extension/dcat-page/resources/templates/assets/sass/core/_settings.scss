@@ -1,0 +1,26 @@
+
+$color__salmon:         #4099de;
+$color__darker_salmon:  #297ec0;
+$color__darkest_salmon: #206296;
+$color__red:            #f4645f;
+$color__blue:           #007ee5;
+$color__darker_blue:    #1867c0;
+$color__green:          #21b978;
+$color__yellow:         #f7db60;
+$color__faint:          #f0f2f1;
+$color__gray:           #414750;
+$color__text:           #525252;
+$color__light_gray:     #7c858e;
+$color__lighter_gray:   #dee0df;
+$color__teal:           #27b4a8;
+$color__custom:         #59a9f8;
+
+$banner_background: linear-gradient(-135deg, #8649D6 0, #2791D2 100%);
+
+// Fonts //
+
+$font_headline: Nunito,system-ui,BlinkMacSystemFont,-apple-system,sans-serif;
+$font:          Nunito,system-ui,BlinkMacSystemFont,-apple-system,sans-serif;
+//$font_alt:              'Miriam Libre', sans-serif;
+$font_alt:      Nunito,system-ui,BlinkMacSystemFont,-apple-system,sans-serif;
+$font_code:     'Operator Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', monospace;

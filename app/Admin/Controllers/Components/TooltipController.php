@@ -18,37 +18,31 @@ class TooltipController extends Controller
 
         Tooltip::make('.tt-left')
             ->left()
-            ->content($text)
-            ->render();
+            ->title($text);
 
         Tooltip::make('.tt-right')
             ->green()
             ->right()
-            ->content($text)
-            ->render();
+            ->title($text);
 
         Tooltip::make('.tt-top')
             ->purple()
-            ->top()
-            ->content($text)
-            ->render();
+            ->top();
 
         Tooltip::make('.tt-bottom')
             ->red()
-            ->bottom()
-            ->content($text)
-            ->render();
+            ->bottom();
 
         return $content
             ->header($header)
-            ->body(function (Row $row) {
-                $html = <<<'HTML'
+            ->body(function (Row $row) use (&$text) {
+                $html = <<<HTML
 <div class="card-padding" style="margin:60px 200px;">
     <div>
-        <a class="tt-left btn-default btn btn-sm"><i class="fa fa-info-circle"></i> &nbsp;Left</a> &nbsp;&nbsp;&nbsp;
-        <a class="tt-right btn-default btn btn-sm"><i class="fa fa-info-circle"></i> &nbsp;Right</a> &nbsp;&nbsp;&nbsp;
-        <a class="tt-top btn-default btn btn-sm"><i class="fa fa-info-circle"></i> &nbsp;Top</a> &nbsp;&nbsp;&nbsp;
-        <a class="tt-bottom btn-default btn btn-sm"><i class="fa fa-info-circle"></i> &nbsp;Bottom</a> &nbsp;&nbsp;&nbsp;
+        <a class="tt-left btn-white btn "><i class="feather icon-help-circle"></i> &nbsp;Left</a> &nbsp;&nbsp;&nbsp;
+        <a class="tt-right btn-white btn "><i class="feather icon-help-circle"></i> &nbsp;Right</a> &nbsp;&nbsp;&nbsp;
+        <a data-title="{$text}" class="tt-top btn-white btn "><i class="feather icon-help-circle"></i> &nbsp;Top</a> &nbsp;&nbsp;&nbsp;
+        <a data-title="{$text}" class="tt-bottom btn-white btn "><i class="feather icon-help-circle"></i> &nbsp;Bottom</a> &nbsp;&nbsp;&nbsp;
     </div>
 </div>
 HTML;

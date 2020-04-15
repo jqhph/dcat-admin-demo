@@ -1,113 +1,131 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{config('admin.title')}} | {{ trans('admin.login') }}</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="{{ admin_asset(\Dcat\Admin\Admin::$baseCss['bootstrap']) }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ admin_asset(\Dcat\Admin\Admin::$baseCss['font-awesome']) }}">
+<style>
+    .login-page {background: #f7f7f9;}
 
-    <link rel="stylesheet" href="{{ admin_asset(\Dcat\Admin\Admin::$baseCss['icons']) }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ admin_asset(\Dcat\Admin\Admin::$baseCss['adminLTE']) }}">
+    .login-box {
+        margin-top: -5rem;
+    }
 
-    <link rel="stylesheet" href="{{ admin_asset("vendor/dcat-admin/dcat-admin/main.min.css") }}">
+    .login-btn {
+        padding-left: 2rem!important;;
+        padding-right: 1.5rem!important;
+    }
+</style>
 
-    <link rel="stylesheet" href="{{ admin_asset(\Dcat\Admin\Admin::$fonts) }}">
+<div class="login-page">
+    <div class="login-box">
+        <div class="login-logo mb-2">
+            {{ config('admin.name') }}
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body p-2 shadow-100">
+                <p class="login-box-msg mt-1 mb-1">{{ __('admin.welcome_back') }}</p>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+                <form id="login-form" method="POST" action="{{ admin_url('auth/login') }}">
 
-    <style>
-        /*.login-logo {*/
-        /*font-family: 'Rancho', cursive, 'Raleway', sans-serif;*/
-        /*}*/
-        .login-box {
-            width:330px;
-        }
-        .login-box-body {
-            box-shadow:0 1px 5px rgba(0, 0, 0, .09), 0 2px 2px rgba(0, 0, 0, .09), 0 3px 1px -2px rgba(0, 0, 0, .09);
-            padding: 30px 25px;
-        }
-        .login-label {
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-        .login-page {
-            background: #f1f1f1;
-        }
-    </style>
-</head>
-<body class="hold-transition login-page" @if(config('admin.login_background_image'))style="background:url({{config('admin.login_background_image')}});background-size:cover"@endif>
-<div class="login-box">
-    <div class="login-logo">
-        <a href="{{ admin_url('/') }}">{{config('admin.name')}}</a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        {{--<p class="login-box-msg">{{ trans('admin.login') }}</p>--}}
+                    @csrf
 
-        <form action="{{ admin_url('auth/login') }}" method="post">
-            <div class="form-group has-feedback {!! !$errors->has('username') ?: 'has-error' !!}">
+                    <fieldset class="form-label-group form-group position-relative has-icon-left">
+                        <input
+                                type="text"
+                                class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}"
+                                name="username"
+                                placeholder="{{ trans('admin.username') }}"
+                                value="admin"
+                                required
+                                autofocus
+                        >
 
-                @if($errors->has('username'))
-                    @foreach($errors->get('username') as $message)
-                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label><br>
-                    @endforeach
-                @endif
-                <label class="login-label">{{ trans('admin.username') }}</label>
-                <input type="text" class="form-control" placeholder="{{ trans('admin.username') }}" name="username" value="{{ old('username') ?: 'admin' }}">
-                <span class="fa fa-user form-control-feedback"></span>
-            </div>
-            <div class="form-group has-feedback {!! !$errors->has('password') ?: 'has-error' !!}">
-
-                @if($errors->has('password'))
-                    @foreach($errors->get('password') as $message)
-                        <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label><br>
-                    @endforeach
-                @endif
-                <label class="login-label">{{ trans('admin.password') }}</label>
-                <input type="password" class="form-control" placeholder="{{ trans('admin.password') }}" value="admin" name="password">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            </div>
-
-            <div class="row" style="margin-top:28px">
-                <div class="col-xs-8">
-                    @if(config('admin.auth.remember'))
-                        <div class="checkbox checkbox-primary">
-                            <input id="remember" name="remember" type="checkbox" value="1" checked>
-                            <label for="remember">
-                                {{ trans('admin.remember_me') }}
-                            </label>
+                        <div class="form-control-position">
+                            <i class="feather icon-user"></i>
                         </div>
-                    @endif
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-primary btn-block">{{ trans('admin.login') }}</button>
-                </div>
-                <!-- /.col -->
+
+                        <label for="email">{{ trans('admin.username') }}</label>
+
+                        <div class="help-block with-errors"></div>
+                        @if($errors->has('username'))
+                            <span class="invalid-feedback text-danger" role="alert">
+                                            @foreach($errors->get('username') as $message)
+                                    <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                @endforeach
+                                        </span>
+                        @endif
+                    </fieldset>
+
+                    <fieldset class="form-label-group form-group position-relative has-icon-left">
+                        <input
+                                minlength="5"
+                                maxlength="20"
+                                id="password"
+                                type="password"
+                                value="admin"
+                                class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                                name="password"
+                                placeholder="{{ trans('admin.password') }}"
+                                required
+                                autocomplete="current-password"
+                        >
+
+                        <div class="form-control-position">
+                            <i class="feather icon-lock"></i>
+                        </div>
+                        <label for="password">{{ trans('admin.password') }}</label>
+
+                        <div class="help-block with-errors"></div>
+                        @if($errors->has('password'))
+                            <span class="invalid-feedback text-danger" role="alert">
+                                            @foreach($errors->get('password') as $message)
+                                    <span class="control-label" for="inputError"><i class="feather icon-x-circle"></i> {{$message}}</span><br>
+                                @endforeach
+                                            </span>
+                        @endif
+
+                    </fieldset>
+                    <div class="form-group d-flex justify-content-between align-items-center">
+                        <div class="text-left">
+                            <fieldset class="checkbox">
+                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                    <input id="remember" name="remember"  value="1" type="checkbox" {{ old('remember') ? 'checked' : '' }}>
+                                    <span class="vs-checkbox">
+                                                        <span class="vs-checkbox--check">
+                                                          <i class="vs-icon feather icon-check"></i>
+                                                        </span>
+                                                    </span>
+                                    <span> {{ trans('admin.remember_me') }}</span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right login-btn">
+
+                        {{ __('admin.login') }}
+                        &nbsp;
+                        <i class="feather icon-arrow-right"></i>
+                    </button>
+                </form>
+
             </div>
-        </form>
-
+        </div>
     </div>
-    <!-- /.login-box-body -->
 </div>
-<!-- /.login-box -->
 
-<!-- jQuery 2.1.4 -->
-<script src="{{ admin_asset(\Dcat\Admin\Admin::$jQuery)}} "></script>
-<!-- Bootstrap 3.3.5 -->
-<script src="{{ admin_asset(\Dcat\Admin\Admin::$baseJs['bootstrap'])}}"></script>
+<script>
+    Dcat.ready(function () {
+        // ajax表单提交
+        $('#login-form').form({
+            validate: true,
+            success: function (data) {
+                if (! data.status) {
+                    Dcat.error(data.message);
 
-</body>
-</html>
+                    return false;
+                }
+
+                Dcat.success(data.message);
+
+                location.href = data.redirect;
+
+                return false;
+            }
+        });
+    });
+</script>

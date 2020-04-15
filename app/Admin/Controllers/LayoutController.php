@@ -18,7 +18,7 @@ class LayoutController extends Controller
             return $this->desc();
         });
 
-        $content->row($tab);
+        $content->row($tab->withCard());
 
         (!request('preview')) && $this->build($content);
 
@@ -65,7 +65,7 @@ class LayoutController extends Controller
             $row->column(3, $this->card(['col-md-3', 95], '#00897B'));
         });
 
-        $content->row('<hr>');
+        $content->row('<br>');
     }
 
     /**
@@ -83,7 +83,7 @@ class LayoutController extends Controller
      */
     protected function br()
     {
-        return "<hr>";
+        return "<br>";
     }
 
     /**
@@ -114,14 +114,14 @@ EOF;
 
 单行单列对应下面绿色区块内容
 ----------------------------------
-| col-md-12                      |
-|                                |
+| col-md-12                           |
+|                                              |
 ----------------------------------
 
 单行三列对应下面蓝紫色区块内容
 -------------------------------------
 | col-md-4  | col-md-4  | col-md-4  |
-|           |           |           |
+|                    |                    |               |
 -------------------------------------
 
 最复杂这个对应最下面水鸭色区块内容

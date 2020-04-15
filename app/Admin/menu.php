@@ -3,7 +3,7 @@
 return [
     [
         'id'        => 'layout',
-        'title'     => 'Layout',
+        'title'     => '布局',
         'icon'      => 'fa-cubes',
         'uri'       => 'layout',
         'parent_id' => 0,
@@ -12,33 +12,39 @@ return [
     /////////////////////////////////////////////////////
     [
         'id'        => 'tables',
-        'title'     => 'Table',
-        'icon'      => '  ti-view-grid',
+        'title'     => '列表',
+        'icon'      => 'feather icon-grid',
         'uri'       => '',
         'parent_id' => 0,
     ],
 
     [
         'id'        => 'grid',
-        'title'     => 'Default',
-        'icon'      => 'fa-table',
+        'title'     => '普通表格',
+        'icon'      => '',
         'uri'       => 'components/grid',
         'parent_id' => 'tables',
     ],
 
     [
         'id'        => 'reports',
-        'title'     => 'Reports',
-        'icon'      => 'fa-align-left',
+        'title'     => '组合表头',
+        'icon'      => '',
         'uri'       => 'reports',
         'parent_id' => 'tables',
     ],
 
-
+    [
+        'id'        => 'grid-tree',
+        'title'     => '树',
+        'icon'      => '',
+        'uri'       => 'tree',
+        'parent_id' => 'tables',
+    ],
     [
         'id'        => 'selector',
-        'title'     => 'Selector',
-        'icon'      => '   fa-filter',
+        'title'     => '筛选器',
+        'icon'      => '',
         'uri'       => 'tables/selector',
         'parent_id' => 'tables',
     ],
@@ -47,22 +53,22 @@ return [
 
     [
         'id'        => 'form',
-        'title'     => 'Form',
-        'icon'      => 'ti-pencil-alt',
+        'title'     => '表单',
+        'icon'      => 'feather icon-edit',
         'uri'       => '',
         'parent_id' => 0,
     ],
     [
         'id'        => 'form1',
         'title'     => '普通表单',
-        'icon'      => 'ti-pencil-alt',
+        'icon'      => '',
         'uri'       => 'form',
         'parent_id' => 'form',
     ],
     [
         'id'        => 'modalf',
         'title'     => '弹窗表单',
-        'icon'      => ' ti-new-window',
+        'icon'      => '',
         'uri'       => 'form/modal',
         'parent_id' => 'form',
     ],
@@ -75,26 +81,26 @@ return [
     ],
 
     [
-        'id'        => 'simple',
-        'title'     => 'Simple Page',
+        'id'        => 'full',
+        'title'     => 'Full Page',
         'icon'      => 'fa-cut',
-        'uri'       => 'simple',
+        'uri'       => 'full',
         'parent_id' => 0,
     ],
 
     ///////////////////////////////////////////////////////
+//    [
+//        'id'        => 'chart',
+//        'title'     => 'Chart',
+//        'icon'      => ' fa-pie-chart',
+//        'uri'       => 'components/charts',
+//        'parent_id' => 1,
+//    ],
     [
-        'id'        => 'chart',
-        'title'     => 'Chart',
-        'icon'      => ' fa-pie-chart',
-        'uri'       => 'components/charts',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'data-card',
-        'title'     => 'Data Card',
+        'id'        => 'metric-card',
+        'title'     => '数据统计卡片',
         'icon'      => ' fa fa-clone',
-        'uri'       => 'components/data-cards',
+        'uri'       => 'components/metric-cards',
         'parent_id' => 1,
     ],
 
@@ -102,21 +108,21 @@ return [
     ///////////////////////////////////////////////////////
     [
         'id'        => 1,
-        'title'     => 'Components',
+        'title'     => '组件',
         'icon'      => 'fa-building',
         'uri'       => '',
         'parent_id' => 0,
     ],
-    [
-        'id'        => 'navbar',
-        'title'     => 'Navbar',
-        'icon'      => 'fa-navicon',
-        'uri'       => 'components/navbar',
-        'parent_id' => 1,
-    ],
+//    [
+//        'id'        => 'navbar',
+//        'title'     => 'Navbar',
+//        'icon'      => 'fa-navicon',
+//        'uri'       => 'components/navbar',
+//        'parent_id' => 1,
+//    ],
     [
         'id'        => 'dropdown',
-        'title'     => 'Dropdown Menu',
+        'title'     => 'Dropdown',
         'icon'      => 'fa-list-ol',
         'uri'       => 'components/dropdown-menu',
         'parent_id' => 1,
@@ -133,13 +139,6 @@ return [
         'title'     => 'Checkbox & Radio',
         'icon'      => 'fa-check-square-o',
         'uri'       => 'components/checkbox-radio',
-        'parent_id' => 1,
-    ],
-    [
-        'id'        => 'layer',
-        'title'     => 'Layer弹出层',
-        'icon'      => 'fa-arrows-alt',
-        'uri'       => 'components/layer',
         'parent_id' => 1,
     ],
     [
@@ -170,13 +169,13 @@ return [
         'uri'       => 'components/loading',
         'parent_id' => 1,
     ],
-    [
-        'id'        => 'accordion',
-        'title'     => 'Accordion',
-        'icon'      => 'fa-plus-circle',
-        'uri'       => 'components/accordion',
-        'parent_id' => 1,
-    ],
+//    [
+//        'id'        => 'accordion',
+//        'title'     => 'Accordion',
+//        'icon'      => 'fa-plus-circle',
+//        'uri'       => 'components/accordion',
+//        'parent_id' => 1,
+//    ],
 
 
     ///////////////////////////////////////////////////////
@@ -190,39 +189,39 @@ return [
     [
         'id'        => 'theaters',
         'title'     => 'In Theaters',
-        'icon'      => 'ti-list-ol',
+        'icon'      => '',
         'uri'       => 'movies/in-theaters',
         'parent_id' => 'api',
     ],
     [
         'id'        => 'coming',
         'title'     => 'Coming Soon',
-        'icon'      => 'ti-list-ol',
+        'icon'      => '',
         'uri'       => 'movies/coming-soon',
         'parent_id' => 'api',
     ],
     [
         'id'        => 'top250',
         'title'     => 'Top 250',
-        'icon'      => 'ti-list-ol',
+        'icon'      => '',
         'uri'       => 'movies/top250',
         'parent_id' => 'api',
     ],
 
     //////////////////////////////////
-    [
-        'id'        => 'extensions',
-        'title'     => 'Extension Demo',
-        'icon'      => 'ti-panel',
-        'uri'       => '',
-        'parent_id' => 0,
-    ],
+//    [
+//        'id'        => 'extensions',
+//        'title'     => 'Extension Demo',
+//        'icon'      => 'fa fa-plugin',
+//        'uri'       => '',
+//        'parent_id' => 0,
+//    ],
     [
         'id'        => 'UEditor',
         'title'     => 'UEditor',
         'icon'      => 'fa-underline',
         'uri'       => 'extensions/ueditor',
-        'parent_id' => 'extensions',
+        'parent_id' => '0',
     ],
 
 ];

@@ -20,8 +20,12 @@ Route::group([
     $router->get('layout', 'LayoutController@index');
     // 报表示例
     $router->get('reports', 'ReportController@index');
+    $router->get('reports/preview', 'ReportController@preview');
     // simple page
-    $router->get('simple', 'SimpleController@index');
+    $router->get('full', 'FullPageController@index');
+
+    $router->get('tree', 'GridTreeController@index');
+    $router->get('tree/preview', 'GridTreeController@preview');
 
     // grid
     $router->resource('components/grid', 'GridController', ['except' => ['create', 'show', 'destroy']]);
@@ -59,11 +63,8 @@ Route::group([
     $router->get('components/dropdown-menu', 'Components\DropdownMenuController@index');
     $router->get('components/loading', 'Components\LoadingController@index');
     $router->get('components/loading/preview', 'Components\LoadingController@preview');
-    $router->get('components/data-cards', 'Components\DataCardController@index');
-    $router->get('components/data-cards/preview', 'Components\DataCardController@preview');
-
-    $router->get('components/navbar', 'Components\NavbarController@index');
-    $router->get('components/accordion', 'Components\AccordionController@index');
+    $router->get('components/metric-cards', 'Components\MetricCardController@index');
+    $router->get('components/metric-cards/preview', 'Components\MetricCardController@preview');
 
     // movies
     $router->get('movies/coming-soon', 'Movies\ComingSoonController@index');

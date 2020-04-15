@@ -4,12 +4,10 @@ namespace App\Admin\Controllers\Movies;
 
 use App\Admin\Controllers\PreviewCode;
 use App\Http\Controllers\Controller;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
 use App\Admin\Repositories\ComingSoon;
-use Dcat\Admin\Layout\Row;
-use Dcat\Admin\Widgets\Navbar;
-use Illuminate\Support\Facades\Input;
 
 class ComingSoonController extends Controller
 {
@@ -27,25 +25,7 @@ class ComingSoonController extends Controller
         $this->define();
 
         return $content->header($this->header)
-            ->body(function (Row $row) {
-                $row->column(5, $this->navbar());
-            })
             ->body($this->grid());
-    }
-
-    protected function navbar()
-    {
-        $items = ['广州', '上海', '北京', '深圳', '杭州', '成都'];
-
-        return Navbar::make('#', array_combine($items, $items))
-            ->checked(request(Grid\Filter\Scope::QUERY_NAME, '广州'))
-            ->click()
-            ->map(function ($v) {
-                $url = '?'.Grid\Filter\Scope::QUERY_NAME.'='.$v;
-
-                return "<a href='$url'>$v</a>";
-            })
-            ->style('max-width:500px');
     }
 
     /**
@@ -57,31 +37,24 @@ class ComingSoonController extends Controller
     {
         $grid = new Grid($repository ?: new ComingSoon());
 
-        $grid->wrap(function ($view) {
-            return "<div class='card'>$view</div>";
-        });
-
         $grid->number();
         $grid->title;
         $grid->images->first()->image('', 100);
         $grid->year;
         $grid->rating->get('average');
         $grid->directors->pluck('name')->label('primary');
-        $grid->casts->pluck('name')->label();
-        $grid->genres->label('purple');
+        $grid->casts->pluck('name')->label('primary');
+        $grid->genres->label('success');
 
         $grid->disableActions();
         $grid->disableBatchDelete();
-        $grid->disableExporter();
         $grid->disableCreateButton();
         $grid->disableFilterButton();
 
         // 开启 responsive 插件，并启用所有字段
         $grid->responsive()->all();
 
-        $grid->tools(function (Grid\Tools $tools) {
-            $tools->append($this->buildPreviewButton(true));
-        });
+        $grid->tools($this->buildPreviewButton());
 
 //        $grid->filter(function (Grid\Filter $filter) {
 //            $cities = ['广州', '上海', '北京', '深圳', '杭州', '成都'];
@@ -108,19 +81,21 @@ class ComingSoonController extends Controller
 
         Grid\Column::define('rating', function ($v) {
             $style = '';
+            $color = Admin::color();
+
             if ($v < 3) {
-                $style = 'var(--primary-30)';
+                $style = $color->alpha('primary', 0.4);
             } elseif ($v >= 3 && $v < 7) {
-                $style = 'var(--primary-70)';
+                $style = $color->alpha('primary', 0.6);
             } elseif ($v >= 7 && $v < 8) {
-                $style = 'var(--primary-90)';
+                $style = $color->alpha('primary', 0.8);
             } elseif ($v >= 8 && $v < 9) {
-                $style = 'var(--primary)';
+                $style = $color->primary();
             } elseif ($v >= 9) {
-                $style = 'var(--primary-dark)';
+                $style = $color->primaryDarker();
             }
 
-            return "<span class='badge' style='background:$style'>$v</span>";
+            return "<span class='badge' style='background:$style;color:#fff'>$v</span>";
         });
     }
 }

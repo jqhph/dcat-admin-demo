@@ -22,16 +22,10 @@ class TeaTable extends Repository
 
         $collection = $this->all()->forPage($page, $pageSize);
 
-        $paginator = new LengthAwarePaginator(
-            $collection,
+        return $model->makePaginator(
             $this->all()->count(),
-            $pageSize, // 传入每页显示行数
-            $page // 传入当前页码
+            $collection
         );
-
-        $paginator->setPath(\url()->current());
-
-        return $paginator;
     }
 
     protected function all()

@@ -1,0 +1,29 @@
+{
+    "name": "dcat-admin-extension/gank",
+    "description": "每日分享妹子图 和 技术干货",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension", "gank"],
+    "homepage": "https://github.com/jqhph",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jqh",
+            "email": "841324345@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dcat\\Admin\\Extension\\Gank\\": "src/"
+        },
+         "files": [
+            "src/bootstrap.php"
+        ]
+    }
+}

@@ -4,7 +4,6 @@ namespace App\Admin\Controllers\Components;
 
 use App\Admin\Controllers\PreviewCode;
 use Dcat\Admin\Layout\Content;
-use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Markdown;
 use Illuminate\Routing\Controller;
 
@@ -20,11 +19,7 @@ class MarkdownController extends Controller
             return new Markdown($this->content());
         });
 
-        $content->row($tab);
-
-        $header = 'Markdown';
-
-        return $content->header($header);
+        return $content->header('Markdown')->body($tab->withCard());
     }
 
     protected function content()

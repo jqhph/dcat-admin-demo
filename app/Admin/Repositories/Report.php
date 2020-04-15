@@ -5,7 +5,6 @@ namespace App\Admin\Repositories;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Repositories\Repository;
 use Faker\Factory;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class Report extends Repository
 {
@@ -13,17 +12,10 @@ class Report extends Repository
     {
         $items = $this->fetch();
 
-        $paginator = new LengthAwarePaginator(
-            $items,
+        return $model->makePaginator(
             1000,
-            $model->getPerPage(), // 传入每页显示行数
-            $model->getCurrentPage() // 传入当前页码
+            $items
         );
-
-        // 必须设置链接
-        $paginator->setPath(\url()->current());
-
-        return $paginator;
     }
 
     /**

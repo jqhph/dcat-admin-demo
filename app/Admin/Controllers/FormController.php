@@ -40,7 +40,7 @@ class FormController extends Controller
                 $tab->add('Form-2', $this->form2(), true);
             }
 
-            $row->column(12, $tab);
+            $row->column(12, $tab->withCard()->theme('primary'));
         });
 
         return $content
@@ -67,7 +67,6 @@ class FormController extends Controller
             ->path('auth/users')
             ->multiple();
 
-        $form->color('form1.color', 'color');
         $form->icon('form1.icon', 'Icon');
         $form->rate('form1.rate', 'rate');
         $form->decimal('form1.decimal', 'decimal');
@@ -120,7 +119,7 @@ class FormController extends Controller
         $menuModel = config('admin.database.menu_model');
         $menuModel = new $menuModel;
         $form->tree('form2.tree', 'tree')
-            ->columnNames('id', 'title')
+            ->setTitleColumn('title')
             ->nodes($menuModel->allNodes());
 
         $form->listbox('form2.listbox', 'listbox')->options($names);
