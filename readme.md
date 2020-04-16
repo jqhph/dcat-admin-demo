@@ -1,6 +1,6 @@
 # Dcat Admin
 
-本项目是[Dcat Admin](https://github.com/jqhph/dcat-admin)的DEMO源码，在线预览[点击这里](https://github.com/jqhph/dcat-admin-demo)。
+本项目是[Dcat Admin](https://github.com/jqhph/dcat-admin)的DEMO源码，在线预览[点击这里](https://jqhph.github.io/dcat-admin/demo.html)。
 
 ## 安装
 
