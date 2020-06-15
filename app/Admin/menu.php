@@ -217,11 +217,31 @@ return [
 //        'parent_id' => 0,
 //    ],
     [
-        'id'        => 'UEditor',
-        'title'     => 'UEditor',
+        'id'        => 'editor',
+        'title'     => '编辑器',
         'icon'      => 'fa-underline',
-        'uri'       => 'extensions/ueditor',
+        'uri'       => '',
         'parent_id' => '0',
     ],
-
+    [
+        'id'        => 'tinymce',
+        'title'     => 'TinyMCE',
+        'icon'      => '',
+        'uri'       => 'form/tinymce',
+        'parent_id' => 'editor',
+    ],
+    [
+        'id'        => 'markdown',
+        'title'     => 'Markdown',
+        'icon'      => '',
+        'uri'       => 'form/markdown',
+        'parent_id' => 'editor',
+    ],
+    [
+        'id'        => 'ueditor',
+        'title'     => 'UEditor',
+        'icon'      => '',
+        'uri'       => 'extensions/ueditor',
+        'parent_id' => 'editor',
+    ],
 ];

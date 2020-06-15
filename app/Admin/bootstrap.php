@@ -27,9 +27,12 @@ use Dcat\Admin\Repositories\Repository;
  *
  */
 
-Admin::booting(function () {
+// 覆盖默认配置
+config(['admin' => user_admin_config()]);
 
-});
+Admin::style('.main-sidebar .nav-sidebar .nav-item>.nav-link {
+    border-radius: .1rem;
+}');
 
 // 扩展Column
 Grid\Column::extend('code', function ($v) {
@@ -39,10 +42,20 @@ Grid\Column::extend('code', function ($v) {
 // 追加菜单
 Admin::menu()->add(include __DIR__.'/menu.php', 0);
 
-
 Admin::navbar(function (Navbar $navbar) {
+    // 切换主题
+//    $navbar->right(view('admin.switch-theme', [
+//        'map' => [
+//            'indigo'    => Dcat\Admin\Admin::color()->indigo(),
+//            'blue'      => '#5686d4',
+//            'blue-dark' => '#5686d4',
+//        ],
+//    ]));
+
+    $navbar->right(App\Admin\Actions\AdminSetting::make()->render());
+
     // 下拉菜单
-    $navbar->right(view('admin.navbar-2'));
+    //$navbar->right(view('admin.navbar-2'));
 
     // 搜索框
     $navbar->right(

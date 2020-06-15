@@ -39,7 +39,7 @@
         </ul>
 
         <div class="search nav-block invisible">
-            {!! \DcatPage\svg('search') !!}
+            <img src="{!! \DcatPage\svg('search') !!}" />
             <input placeholder="search" type="text" id="search-input" aria-label="search"/>
         </div>
 

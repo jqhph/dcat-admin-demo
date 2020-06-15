@@ -15,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        include __DIR__.'/../helpers.php';
+
         if (config('app.debug') && class_exists(IdeHelperServiceProvider::class)) {
             $this->app->register(IdeHelperServiceProvider::class);
         }

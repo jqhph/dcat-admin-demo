@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "4991da187e301531f9ec7d756307769c",
@@ -61,16 +61,16 @@
         },
         {
             "name": "dcat/laravel-admin",
-            "version": "0.8.2",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jqhph/dcat-admin.git",
-                "reference": "b557e72e57997bd1193606d4cd1525d80d61bbd3"
+                "reference": "75230fe82d842aff373d28465fbb380ca8e06854"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/b557e72e57997bd1193606d4cd1525d80d61bbd3",
-                "reference": "b557e72e57997bd1193606d4cd1525d80d61bbd3",
+                "url": "https://api.github.com/repos/jqhph/dcat-admin/zipball/75230fe82d842aff373d28465fbb380ca8e06854",
+                "reference": "75230fe82d842aff373d28465fbb380ca8e06854",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -84,7 +84,7 @@
                 "laravel/framework": "~5.5|~6.0|~7.0",
                 "php": ">=7.1.0",
                 "spatie/eloquent-sortable": "3.*",
-                "symfony/dom-crawler": "~3.1|~4.0"
+                "symfony/dom-crawler": "~3.1|~4.0|~5.0"
             },
             "require-dev": {
                 "fzaninotto/faker": "^1.4",
@@ -129,7 +129,7 @@
                 "laravel",
                 "laravel admin"
             ],
-            "time": "2020-04-13T15:45:31+00:00"
+            "time": "2020-06-14T15:22:46+00:00"
         },
         {
             "name": "dcat/page",

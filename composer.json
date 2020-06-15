@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "dcat-admin-extension/ueditor": "dev-master",
-        "dcat/laravel-admin": "*",
+        "dcat/laravel-admin": "^1.5.0",
         "dcat/page": "dev-master",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",

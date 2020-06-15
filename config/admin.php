@@ -87,14 +87,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Cdn setting
-    |--------------------------------------------------------------------------
-    |
-   */
-    'cdn' => env('ADMIN_CDN', false),
-
-    /*
-    |--------------------------------------------------------------------------
     | Access via `https`
     |--------------------------------------------------------------------------
     |
@@ -312,23 +304,20 @@ return [
     | This value is the layout of admin pages.
     */
     'layout' => [
+        // indigo, blue, blue-light, blue-dark, green
+        'color' => 'indigo',
+
         'body_class' => '',
 
         'sidebar_collapsed' => false,
 
+        'sidebar_dark' => false,
+
+        'dark_mode_switch' => true,
+
         // bg-primary, bg-info, bg-warning, bg-success, bg-danger, bg-dark
         'navbar_color' => '',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Login page background image
-    |--------------------------------------------------------------------------
-    |
-    | This value is used to set the background image of login page.
-    |
-    */
-    'login_background_image' => '',
 
     /*
     |--------------------------------------------------------------------------

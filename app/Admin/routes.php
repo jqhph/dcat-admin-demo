@@ -44,6 +44,9 @@ Route::group([
     $router->get('form/modal', 'ModalFormController@index');
     $router->get('form/modal/preview', 'ModalFormController@preview');
 
+    $router->get('form/tinymce', 'EditorController@tinymce');
+    $router->get('form/tinymce/preview', 'EditorController@preview');
+    $router->get('form/markdown', 'EditorController@markdown');
 
     // 表格
     $router->get('tables/selector', 'SelectorController@index');
