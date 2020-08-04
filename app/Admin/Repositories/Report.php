@@ -31,6 +31,7 @@ class Report extends Repository
 
         for ($i = 0; $i < 20; $i++) {
             $data[] = [
+                'name' => $faker->name,
                 'content' => $faker->text,
                 'cost' => $faker->randomFloat(),
                 'avgMonthCost' => $faker->randomFloat(),
@@ -45,6 +46,8 @@ class Report extends Repository
                 'topVist' => $faker->numberBetween(1, 9999990009),
                 'topIncr' => $faker->numberBetween(1, 99999999),
                 'date' => $faker->date(),
+                'created_at' => $faker->dateTime()->format('Y-m-d H:i:s'),
+                'updated_at' => $faker->dateTime()->format('Y-m-d H:i:s'),
             ];
         }
 

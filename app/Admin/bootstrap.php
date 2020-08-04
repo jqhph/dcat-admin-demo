@@ -1,5 +1,6 @@
 <?php
 
+use App\Admin\Grid\Tools\SwitchGridMode;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Form;
@@ -37,6 +38,14 @@ Admin::style('.main-sidebar .nav-sidebar .nav-item>.nav-link {
 // 扩展Column
 Grid\Column::extend('code', function ($v) {
     return "<code>$v</code>";
+});
+
+Grid::resolving(function (Grid $grid) {
+    if (! request('_row_')) {
+        $grid->tableCollapse();
+
+        $grid->tools(new App\Admin\Grid\Tools\SwitchGridMode());
+    }
 });
 
 // 追加菜单

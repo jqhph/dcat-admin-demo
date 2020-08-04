@@ -33,7 +33,20 @@ return [
         'uri'       => 'reports',
         'parent_id' => 'tables',
     ],
-
+    [
+        'id'        => 'fixed-columns',
+        'title'     => '固定列',
+        'icon'      => '',
+        'uri'       => 'fixed-columns',
+        'parent_id' => 'tables',
+    ],
+    [
+        'id'        => 'with-border',
+        'title'     => '边框模式+异步加载',
+        'icon'      => '',
+        'uri'       => 'with-border',
+        'parent_id' => 'tables',
+    ],
     [
         'id'        => 'grid-tree',
         'title'     => '树',
@@ -48,7 +61,13 @@ return [
         'uri'       => 'tables/selector',
         'parent_id' => 'tables',
     ],
-
+    [
+        'id'        => 'row-space',
+        'title'     => '行间距模式',
+        'icon'      => '',
+        'uri'       => 'row-space',
+        'parent_id' => 'tables',
+    ],
     ///////////////////////////////
 
     [
@@ -77,6 +96,14 @@ return [
         'title'     => '分步表单',
         'icon'      => ' fa-list-ol',
         'uri'       => 'form/step',
+        'parent_id' => 'form',
+    ],
+
+    [
+        'id'        => 'whenform',
+        'title'     => '表单动态显示',
+        'icon'      => '',
+        'uri'       => 'form/when',
         'parent_id' => 'form',
     ],
 

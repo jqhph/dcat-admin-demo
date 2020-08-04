@@ -31,24 +31,10 @@ class ReportController extends Controller
     protected function grid()
     {
         return new Grid(new Report(), function (Grid $grid) {
-            // 开启responsive插件
-            $grid->responsive();
-            $grid->disableActions();
-            $grid->disableBatchDelete();
-            $grid->disableCreateButton();
-            $grid->disableCreateButton();
-
-            $grid->rowSelector()
-                ->style('success')
-                ->click();
-
-            // 更改表格外层容器
-            $grid->wrap(function (Renderable $view) {
-                return $view;
-            });
-
             $grid->combine('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->responsive()->help('提示信息演示');
             $grid->combine('avgVist', ['avgMonthVist', 'avgQuarterVist', 'avgYearVist'])->responsive();
+
+            $grid->tableCollapse(false);
 
             $grid->content->limit(50)->responsive();
             $grid->cost->sortable()->responsive();
@@ -61,6 +47,17 @@ class ReportController extends Controller
             $grid->incrs->hide();
             $grid->avgVists->hide();
             $grid->date->sortable()->responsive();
+
+            // 开启responsive插件
+            $grid->responsive();
+            $grid->disableActions();
+            $grid->disableBatchDelete();
+            $grid->disableCreateButton();
+            $grid->disableCreateButton();
+
+            $grid->rowSelector()
+                ->style('success')
+                ->click();
 
             $grid->tools($this->buildPreviewButton());
 

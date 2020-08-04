@@ -21,6 +21,16 @@ Route::group([
     // 报表示例
     $router->get('reports', 'ReportController@index');
     $router->get('reports/preview', 'ReportController@preview');
+    // 固定列功能示例
+    $router->get('fixed-columns', 'FixedController@index');
+    $router->get('fixed-columns/preview', 'FixedController@preview');
+    // 固定列功能示例
+    $router->get('with-border', 'BorderTableController@index');
+    $router->get('with-border/preview', 'BorderTableController@preview');
+    // 行间距
+    $router->get('row-space', 'RowSpaceController@index');
+    $router->get('row-space/preview', 'RowSpaceController@preview');
+
     // simple page
     $router->get('full', 'FullPageController@index');
 
@@ -39,6 +49,11 @@ Route::group([
     $router->get('form/step/preview', 'StepFormController@preview');
     $router->get('form/step', 'StepFormController@index');
     $router->post('form/step', 'StepFormController@store');
+
+    // 动态显示表单
+    $router->get('form/when/preview', 'FormWhenController@preview');
+    $router->get('form/when', 'FormWhenController@index');
+    $router->post('form/when', 'FormWhenController@store');
 
     // 表单弹窗
     $router->get('form/modal', 'ModalFormController@index');

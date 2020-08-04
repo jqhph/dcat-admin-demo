@@ -25,7 +25,7 @@ class StepFormController extends Controller
     {
         return new Form(null, function (Form $form) {
             $form->title('分步表单');
-            $form->action('step');
+            $form->action('form/step');
             $form->disableListButton();
 
             $form->multipleSteps()
@@ -67,7 +67,7 @@ class StepFormController extends Controller
                     // 事件
                     $step->shown(function () {
                         return <<<JS
-    LA.info('兴趣爱好');
+    Dcat.info('兴趣爱好');
     console.log('兴趣爱好', args);
 JS;
                     });

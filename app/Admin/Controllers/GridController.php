@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Admin\Metrics\Examples\NewDevices;
 use App\Admin\Metrics\Examples\NewUsers;
 use App\Admin\Metrics\Examples\TotalUsers;
+use App\Admin\Renderable\PostTable;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Widgets\Card;
@@ -36,13 +37,7 @@ class GridController extends Controller
             $grid->progressBar->progressBar()->sortable();
             $grid->expand
                 ->display(Factory::create()->name)
-                ->expand(function () {
-                    $faker = Factory::create();
-
-                    $card = new Card(null, $faker->text(900));
-
-                    return "<div style='padding:10px 10px 0'>$card</div>";
-                });
+                ->expand(PostTable::make());
             $grid->select->select(['GET', 'POST', 'PUT', 'DELETE']);
             $grid->switch->switch();
             $grid->switchGroup('Switch Group')
