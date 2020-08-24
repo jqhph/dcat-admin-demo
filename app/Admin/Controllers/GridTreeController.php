@@ -27,12 +27,12 @@ class GridTreeController extends Controller
     {
         $grid = new Grid(new Permission());
 
-        $grid->id('ID')->bold()->sortable();
-        $grid->name->tree();
-        $grid->order->orderable();
-        $grid->slug->label('primary');
+        $grid->column('id')->bold()->sortable();
+        $grid->column('name')->tree();
+        $grid->column('order')->orderable();
+        $grid->column('slug')->label('primary');
 
-        $grid->http_path->display(function ($path) {
+        $grid->column('http_path')->display(function ($path) {
             if (! $path) {
                 return;
             }
@@ -62,8 +62,8 @@ class GridTreeController extends Controller
             })->implode('');
         });
 
-        $grid->created_at;
-        $grid->updated_at->sortable();
+        $grid->column('created_at');
+        $grid->column('updated_at')->sortable();
 
         $grid->resource('auth/permissions');
         $grid->disableEditButton();

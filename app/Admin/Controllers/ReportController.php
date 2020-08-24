@@ -36,17 +36,17 @@ class ReportController extends Controller
 
             $grid->tableCollapse(false);
 
-            $grid->content->limit(50)->responsive();
-            $grid->cost->sortable()->responsive();
-            $grid->avgMonthCost->responsive();
-            $grid->avgQuarterCost->responsive()->setHeaderAttributes(['style' => 'color:#5b69bc']);
-            $grid->avgYearCost->responsive();
-            $grid->avgMonthVist->responsive();
-            $grid->avgQuarterVist->responsive();
-            $grid->avgYearVist->responsive();
-            $grid->incrs->hide();
-            $grid->avgVists->hide();
-            $grid->date->sortable()->responsive();
+            $grid->column('content')->limit(50)->responsive();
+            $grid->column('cost')->sortable()->responsive();
+            $grid->column('avgMonthCost')->responsive();
+            $grid->column('avgQuarterCost')->responsive()->setHeaderAttributes(['style' => 'color:#5b69bc']);
+            $grid->column('avgYearCost')->responsive();
+            $grid->column('avgMonthVist')->responsive();
+            $grid->column('avgQuarterVist')->responsive();
+            $grid->column('avgYearVist')->responsive();
+            $grid->column('incrs')->hide();
+            $grid->column('avgVists')->hide();
+            $grid->column('date')->sortable()->responsive();
 
             // 开启responsive插件
             $grid->responsive();

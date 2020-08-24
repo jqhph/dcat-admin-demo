@@ -2,7 +2,9 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Forms\UserProfile;
 use App\Admin\Renderable\PostTable;
+use App\Admin\Renderable\UserTable;
 use App\Admin\Repositories\Report;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Grid;
@@ -26,15 +28,12 @@ class BorderTableController extends Controller
         return new Grid(new Report(), function (Grid $grid) {
             $grid->name;
             $grid->content->limit(50);
-            $grid->cost->sortable();
-            $grid->avgMonthCost->display('弹窗异步加载')->modal('弹窗标题', PostTable::make());
-            $grid->avgQuarterCost->setHeaderAttributes(['style' => 'color:#5b69bc']);
-            $grid->avgYearCost;
+            $grid->avgMonthCost->display('异步表单')->modal('弹窗标题', UserProfile::make());
+            $grid->avgYearCost->display('异步表格')->modal('弹窗标题', UserTable::make());
             $grid->avgYearVist->hide();
             $grid->incrs;
             $grid->date->sortable();
             $grid->created_at;
-            $grid->updated_at;
 
             $grid->tools($this->buildPreviewButton());
 

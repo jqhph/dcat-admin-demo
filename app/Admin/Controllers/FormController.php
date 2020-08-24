@@ -2,11 +2,13 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Renderable\UserTable;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Models\Administrator;
 use Dcat\Admin\Widgets\Box;
 use Dcat\Admin\Widgets\Form;
 use Dcat\Admin\Widgets\Tab;
@@ -40,7 +42,7 @@ class FormController extends Controller
                 $tab->add('Form-2', $this->form2(), true);
             }
 
-            $row->column(12, $tab->withCard()->theme('primary'));
+            $row->column(12, $tab->withCard());
         });
 
         return $content
@@ -60,14 +62,22 @@ class FormController extends Controller
         $form->url('form1.url', 'url');
         $form->ip('form1.ip', 'ip');
 
-        $form->selectResource('form1.select-resource', 'Select Resource')
-            ->path('auth/users');
+        $form->color('form1.color', 'color');
 
-        $form->selectResource('form1.select-resource-multiple', 'Select Resource(Multiple)')
-            ->path('auth/users')
-            ->multiple();
+        $form->divider();
 
-        $form->icon('form1.icon', 'Icon');
+        $form->selectTable('form1.select-table', 'Select Table')
+            ->title('User')
+            ->from(UserTable::make())
+            ->model(Administrator::class, 'id', 'name');
+
+        $form->multipleSelectTable('form1.select-resource-multiple', 'Multiple Select Table')
+            ->title('User')
+            ->max(4)
+            ->from(UserTable::make())
+            ->model(Administrator::class, 'id', 'name');
+
+        $form->icon('form1.icon', 'icon');
         $form->rate('form1.rate', 'rate');
         $form->decimal('form1.decimal', 'decimal');
         $form->number('form1.number', 'number');
@@ -84,7 +94,7 @@ class FormController extends Controller
         $form->datetimeRange('form1.datetime-start', 'form1.datetime-end', 'datetime range');
 
         $form->html(function () {
-            return '~~~~~~~~~';
+            return '<b>自定义HTML</b>';
         }, 'html')->help('自定义内容');
 
         $form->textarea('form1.textarea', 'textarea');
@@ -113,7 +123,7 @@ class FormController extends Controller
         $form->multipleSelect('form2.multiple-select', 'multiple select')->options($names);
         $form->image('form2.image', 'image');
         $form->multipleFile('form2.multiple-file', 'multiple file')->limit(3);
-        $form->checkbox('form2.checkbox', 'checkbox')->options(['GET', 'POST', 'PUT', 'DELETE'])->default(1);
+        $form->checkbox('form2.checkbox', 'checkbox')->options(['GET', 'POST', 'PUT', 'DELETE'])->canCheckAll()->default(1);
         $form->radio('form2.radio', 'radio')->options(['GET', 'POST', 'PUT', 'DELETE'])->default(0);
 
         $menuModel = config('admin.database.menu_model');

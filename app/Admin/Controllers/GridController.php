@@ -8,7 +8,7 @@ use App\Admin\Metrics\Examples\TotalUsers;
 use App\Admin\Renderable\PostTable;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
-use Dcat\Admin\Widgets\Card;
+use Dcat\Admin\Layout\Row;
 use Faker\Factory;
 use Illuminate\Routing\Controller;
 
@@ -21,7 +21,7 @@ class GridController extends Controller
         return $content
             ->header('表格')
             ->description('表格功能展示')
-            ->body(function ($row) {
+            ->body(function (Row $row) {
                 $row->column(4, new TotalUsers());
                 $row->column(4, new NewUsers());
                 $row->column(4, new NewDevices());
@@ -32,15 +32,15 @@ class GridController extends Controller
     protected function grid()
     {
         return new Grid(null, function (Grid $grid) {
-            $grid->id->code()->sortable();
-            $grid->label->explode()->label();
-            $grid->progressBar->progressBar()->sortable();
-            $grid->expand
+            $grid->column('id')->code()->sortable();
+            $grid->column('label')->explode()->label();
+            $grid->column('progressBar')->progressBar()->sortable();
+            $grid->column('expand')
                 ->display(Factory::create()->name)
                 ->expand(PostTable::make());
-            $grid->select->select(['GET', 'POST', 'PUT', 'DELETE']);
-            $grid->switch->switch();
-            $grid->switchGroup('Switch Group')
+            $grid->column('select')->select(['GET', 'POST', 'PUT', 'DELETE']);
+            $grid->column('switch')->switch();
+            $grid->column('switchGroup', 'Switch Group')
                 ->if(function () {
                     return $this->id != mt_rand(3, 5);
                 })
@@ -48,8 +48,8 @@ class GridController extends Controller
                 ->else()
                 ->display('<i>None</i>');
 
-            $grid->checkbox->checkbox(['GET', 'POST', 'PUT', 'DELETE']);
-            $grid->radio
+            $grid->column('checkbox')->checkbox(['GET', 'POST', 'PUT', 'DELETE']);
+            $grid->column('radio')
                 ->if(function () {
                     return $this->id != mt_rand(3, 5);
                 })
@@ -66,7 +66,7 @@ class GridController extends Controller
             $grid->model()->setData($this->generate());
 
             $grid->tools(function (Grid\Tools $tools) {
-                $tools->append($this->buildPreviewButton(true));
+                $tools->append($this->buildPreviewButton());
             });
 
             // 过滤器

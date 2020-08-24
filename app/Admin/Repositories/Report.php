@@ -31,6 +31,7 @@ class Report extends Repository
 
         for ($i = 0; $i < 20; $i++) {
             $data[] = [
+                'id' => $i + 1,
                 'name' => $faker->name,
                 'content' => $faker->text,
                 'cost' => $faker->randomFloat(),

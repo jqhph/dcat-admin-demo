@@ -59,7 +59,7 @@ trait PreviewCode
     /**
      * @return string
      */
-    protected function buildPreviewButton()
+    protected function buildPreviewButton($class = 'btn-white')
     {
         $previewUrl = '/'.request()->path().'/preview';
 
@@ -77,7 +77,7 @@ SCRIPT
 
         );
 
-        return "<button class='btn btn-white preview-code'> &nbsp;&nbsp;&nbsp;<i class=' fa  fa-code'></i>&nbsp;预览代码&nbsp;&nbsp;&nbsp; </button>";
+        return "<button class='btn {$class} preview-code'> &nbsp;&nbsp;&nbsp;<i class=' fa  fa-code'></i>&nbsp;预览代码&nbsp;&nbsp;&nbsp; </button>";
     }
 
     /**

@@ -31,7 +31,7 @@ class FullPageController extends Controller
                 $form->disableSubmitButton();
 
                 $form->selectResource('user')
-                    ->path('auth/users')
+                    ->path('users')
                     ->multiple(3)
                     ->width(9);
 
@@ -63,7 +63,7 @@ public function index(Content $content)
             $form->disableSubmitButton();
 
             $form->selectResource('user')
-                ->path('auth/users')
+                ->path('users')
                 ->multiple(3)
                 ->setWidth(9);
 
@@ -78,37 +78,24 @@ public function index(Content $content)
 >Iframe弹窗页面控制器代码如下：        
         
 ```php
-/**
- * Index interface.
- *
- * @return Content
- */
-public function index(Content $content)
+class UserController
 {
-    if (request('_mini')) {
-        // 构建一个没有菜单栏和顶部导航栏的页面
-        // 此处无需手动调用 "Content::full" 方法，因为 "MiniGrid" 对象初始化时会自动调用 "Content::full" 方法
-        return $content->body($this->miniGrid());
+    public function index(Content $content)
+    {
+        return $content->full()->body($this->grid());
     }
 
-    ...
-}
+    protected function grid()
+    {
+        return Grid::make(new Administrator(), function (Grid $grid) {
+            $grid->column('id', 'ID')->sortable();
+            $grid->column('username');
+            $grid->column('name');
+            $grid->column('created_at');
 
-protected function miniGrid()
-{
-    $grid = new MiniGrid(new Administrator());
-
-    $grid->id->sortable();
-    $grid->username;
-    $grid->name;
-
-    $grid->filter(function (Grid\Filter $filter) {
-        $filter->equal('id');
-        $filter->like('username');
-        $filter->like('name');
-    });
-
-    return $grid;
+            $grid->quickSearch(['id', 'username', 'name']);
+        });
+    }
 }
 ```
 CODE;

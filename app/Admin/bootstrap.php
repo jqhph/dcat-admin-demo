@@ -30,6 +30,7 @@ use Dcat\Admin\Repositories\Repository;
 
 // 覆盖默认配置
 config(['admin' => user_admin_config()]);
+config(['app.locale' => config('admin.lang') ?: config('app.locale')]);
 
 Admin::style('.main-sidebar .nav-sidebar .nav-item>.nav-link {
     border-radius: .1rem;
@@ -44,7 +45,8 @@ Grid::resolving(function (Grid $grid) {
     if (! request('_row_')) {
         $grid->tableCollapse();
 
-        $grid->tools(new App\Admin\Grid\Tools\SwitchGridMode());
+
+//        $grid->tools(new App\Admin\Grid\Tools\SwitchGridMode());
     }
 });
 
@@ -61,7 +63,10 @@ Admin::navbar(function (Navbar $navbar) {
 //        ],
 //    ]));
 
-    $navbar->right(App\Admin\Actions\AdminSetting::make()->render());
+    // ajax请求不执行
+    if (! Dcat\Admin\Support\Helper::isAjaxRequest()) {
+        $navbar->right(App\Admin\Actions\AdminSetting::make()->render());
+    }
 
     // 下拉菜单
     //$navbar->right(view('admin.navbar-2'));

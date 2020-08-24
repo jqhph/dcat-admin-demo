@@ -2,9 +2,9 @@
 
 namespace App\Admin\Actions;
 
-use App\Admin\Forms\AdminSetting as AdminSettingForm;
+use App\Admin\Renderable\AdminSetting as AdminSettingView;
 use Dcat\Admin\Actions\Action;
-use Dcat\Admin\Admin;
+use Dcat\Admin\Widgets\Modal;
 
 class AdminSetting extends Action
 {
@@ -15,44 +15,19 @@ class AdminSetting extends Action
 
     public function render()
     {
-        $id = 'admin-setting-config';
-
-        // 模态窗
-        $this->modal($id);
-
-        return <<<HTML
+        $modal = Modal::make()
+            ->id('admin-setting-config') // 导航栏显示弹窗，必须固定ID，随机ID会在刷新后失败
+            ->title($this->title())
+            ->body(AdminSettingView::make())
+            ->lg()
+            ->button(
+                <<<HTML
 <ul class="nav navbar-nav">
-    <li>
-    <span class="grid-expand" data-toggle="modal" data-target="#{$id}" style="cursor: pointer;">
-       网站设置
-    </span>&nbsp;
-    </li>
-</ul>
-HTML;
-    }
-
-    protected function modal($id)
-    {
-        // 工具表单
-        $form = new AdminSettingForm();
-
-        // 通过 Admin::html 方法设置模态窗HTML
-        Admin::html(
-            <<<HTML
-<div class="modal fade" id="{$id}">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">{$this->title()}</h4>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        {$form->render()}
-      </div>
-    </div>
-  </div>
-</div>
+    <li>{$this->title}[异步]</li>
+</ul> 
 HTML
-        );
+            );
+
+        return $modal->render();
     }
 }

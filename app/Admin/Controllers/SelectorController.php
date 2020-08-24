@@ -6,15 +6,15 @@ use App\Admin\Repositories\TeaTable;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
-use Illuminate\Http\Request;
+use Dcat\Admin\Layout\Content;
 
 class SelectorController extends Controller
 {
     use PreviewCode;
 
-    public function index(Request $request)
+    public function index(Content $content)
     {
-        return Admin::content()
+        return $content
             ->body($this->grid())
             ->header('表格筛选器')
             ->description('筛选器示例');
@@ -39,7 +39,7 @@ class SelectorController extends Controller
             $grid->disableActions();
 
             $grid->tools(function (Grid\Tools $tools) {
-                $tools->append($this->buildPreviewButton(true));
+                $tools->append($this->buildPreviewButton('btn-primary'));
             });
 
             $grid->selector(function (Grid\Tools\Selector $selector) {

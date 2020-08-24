@@ -14,7 +14,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
-    $router->resource('posts', 'PostsController');
+    $router->resource('users', 'UserController');
 
     // 布局示例
     $router->get('layout', 'LayoutController@index');
@@ -30,6 +30,9 @@ Route::group([
     // 行间距
     $router->get('row-space', 'RowSpaceController@index');
     $router->get('row-space/preview', 'RowSpaceController@preview');
+    // 自定义表格视图
+    $router->get('grid/custom', 'CustomGridController@index');
+    $router->get('grid/custom/preview', 'CustomGridController@preview');
 
     // simple page
     $router->get('full', 'FullPageController@index');
@@ -83,6 +86,9 @@ Route::group([
     $router->get('components/loading/preview', 'Components\LoadingController@preview');
     $router->get('components/metric-cards', 'Components\MetricCardController@index');
     $router->get('components/metric-cards/preview', 'Components\MetricCardController@preview');
+
+    $router->get('components/modal', 'Components\ModalController@index');
+    $router->get('components/modal/preview', 'Components\ModalController@preview');
 
     // movies
     $router->get('movies/coming-soon', 'Movies\ComingSoonController@index');

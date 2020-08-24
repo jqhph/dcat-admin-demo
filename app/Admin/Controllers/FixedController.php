@@ -24,19 +24,19 @@ class FixedController extends Controller
     protected function grid()
     {
         return new Grid(new Report(), function (Grid $grid) {
-            $grid->name;
-            $grid->content->limit(50);
-            $grid->cost->sortable();
-            $grid->avgQuarterCost->setHeaderAttributes(['style' => 'color:#5b69bc']);
-            $grid->avgYearCost;
-            $grid->avgMonthVist;
-            $grid->avgQuarterVist;
-            $grid->avgYearVist;
-            $grid->incrs;
-            $grid->avgVists;
-            $grid->date->sortable();
-            $grid->created_at;
-            $grid->updated_at;
+            $grid->column('name');
+            $grid->column('content')->limit(50);
+            $grid->column('cost')->sortable();
+            $grid->column('avgQuarterCost')->setHeaderAttributes(['style' => 'color:#5b69bc']);
+            $grid->column('avgYearCost');
+            $grid->column('avgMonthVist');
+            $grid->column('avgQuarterVist');
+            $grid->column('avgYearVist');
+            $grid->column('incrs');
+            $grid->column('avgVists');
+            $grid->column('date')->sortable();
+            $grid->column('created_at');
+            $grid->column('updated_at');
 
             $grid->tools($this->buildPreviewButton());
 
