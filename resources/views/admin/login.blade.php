@@ -94,7 +94,7 @@
         color: #fff;
         background-color: rgba(0, 0, 0, 0.3);
         text-align: center !important;
-        background: url(/vendors/dcat-admin/images/pages/login/bg.jpg) center;
+        background: url(/vendor/dcat-admin/images/pages/login/bg.jpg) center;
         background-size: cover;
     }
 
@@ -248,19 +248,6 @@
         // ajax表单提交
         $('#login-form').form({
             validate: true,
-            success: function (data) {
-                if (! data.status) {
-                    Dcat.error(data.message);
-
-                    return false;
-                }
-
-                Dcat.success(data.message);
-
-                location.href = data.redirect;
-
-                return false;
-            }
         });
     });
 </script>

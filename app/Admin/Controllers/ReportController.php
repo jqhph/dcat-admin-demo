@@ -9,7 +9,6 @@ use App\Admin\Repositories\Report;
 use App\Http\Controllers\Controller;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
-use Illuminate\Contracts\Support\Renderable;
 
 class ReportController extends Controller
 {
@@ -31,25 +30,27 @@ class ReportController extends Controller
     protected function grid()
     {
         return new Grid(new Report(), function (Grid $grid) {
-            $grid->combine('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->responsive()->help('提示信息演示');
-            $grid->combine('avgVist', ['avgMonthVist', 'avgQuarterVist', 'avgYearVist'])->responsive();
+            $grid->showColumnSelector();
+
+            $grid->combine('avgCost', ['avgMonthCost', 'avgQuarterCost', 'avgYearCost'])->help('提示信息演示');
+            $grid->combine('avgVist', ['avgMonthVist', 'avgQuarterVist', 'avgYearVist']);
 
             $grid->tableCollapse(false);
 
-            $grid->column('content')->limit(50)->responsive();
-            $grid->column('cost')->sortable()->responsive();
-            $grid->column('avgMonthCost')->responsive();
-            $grid->column('avgQuarterCost')->responsive()->setHeaderAttributes(['style' => 'color:#5b69bc']);
-            $grid->column('avgYearCost')->responsive();
-            $grid->column('avgMonthVist')->responsive();
-            $grid->column('avgQuarterVist')->responsive();
-            $grid->column('avgYearVist')->responsive();
+            $grid->column('content')->limit(50);
+            $grid->column('cost')->sortable();
+            $grid->column('avgMonthCost');
+            $grid->column('avgQuarterCost')->setHeaderAttributes(['style' => 'color:#5b69bc']);
+            $grid->column('avgYearCost');
+            $grid->column('avgMonthVist');
+            $grid->column('avgQuarterVist');
+            $grid->column('avgYearVist');
             $grid->column('incrs')->hide();
             $grid->column('avgVists')->hide();
-            $grid->column('date')->sortable()->responsive();
+            $grid->column('date')->sortable();
 
             // 开启responsive插件
-            $grid->responsive();
+            $grid;
             $grid->disableActions();
             $grid->disableBatchDelete();
             $grid->disableCreateButton();

@@ -62,6 +62,20 @@ Admin::navbar(function (Navbar $navbar) {
 //            'blue-dark' => '#5686d4',
 //        ],
 //    ]));
+    $navbar->right(
+        <<<HTML
+<ul class="nav navbar-nav">
+    <li>
+        &nbsp;
+        <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
+            <i class="ficon feather icon-github"></i> DEMO源码下载
+        </a> 
+        &nbsp; &nbsp; 
+    </li>
+</ul> 
+HTML
+
+    );
 
     // ajax请求不执行
     if (! Dcat\Admin\Support\Helper::isAjaxRequest()) {

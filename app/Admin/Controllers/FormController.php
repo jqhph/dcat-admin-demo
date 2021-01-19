@@ -4,7 +4,6 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Renderable\UserTable;
 use App\Http\Controllers\Controller;
-use Dcat\Admin\Admin;
 use Dcat\Admin\Form\NestedForm;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;

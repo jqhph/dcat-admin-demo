@@ -77,7 +77,7 @@ SCRIPT
 
         );
 
-        return "<button class='btn {$class} preview-code'> &nbsp;&nbsp;&nbsp;<i class=' fa  fa-code'></i>&nbsp;预览代码&nbsp;&nbsp;&nbsp; </button>";
+        return "<button class='btn {$class} preview-code'> &nbsp;&nbsp;&nbsp;<i class=' fa  fa-code'></i>&nbsp;预览代码&nbsp;&nbsp;&nbsp; </button>&nbsp;";
     }
 
     /**

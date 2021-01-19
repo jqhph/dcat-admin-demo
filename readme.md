@@ -2,6 +2,12 @@
 
 本项目是[Dcat Admin](https://github.com/jqhph/dcat-admin)的DEMO源码，在线预览[点击这里](https://jqhph.github.io/dcat-admin/demo.html)。
 
+
+仓库地址
+
+- Github [https://github.com/jqhph/dcat-admin-demo](https://github.com/jqhph/dcat-admin-demo) 
+- Gitee  [https://gitee.com/jqhph/dcat-admin-demo](https://gitee.com/jqhph/dcat-admin-demo) 
+
 ## 安装
 
 运行

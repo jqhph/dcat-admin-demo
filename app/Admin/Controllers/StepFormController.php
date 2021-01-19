@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use Dcat\Admin\FormStep\Form as StepForm;
 use Dcat\Admin\Form;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Widgets\Alert;
@@ -31,7 +32,7 @@ class StepFormController extends Controller
             $form->multipleSteps()
                 ->remember()
                 ->width('950px')
-                ->add('基本信息', function (Form\StepForm $step) {
+                ->add('基本信息', function (StepForm $step) {
                     $info = '<i class="fa fa-exclamation-circle"></i> 表单字段支持前端验证和后端验证混用，前端验证支持H5表单验证以及自定义验证。';
 
                     $step->html(Alert::make($info)->info());
@@ -56,7 +57,7 @@ class StepFormController extends Controller
                     $step->textarea('description', '简介');
 
                 })
-                ->add('兴趣爱好', function (Form\StepForm $step) {
+                ->add('兴趣爱好', function (StepForm $step) {
                     $step->tags('hobbies', '爱好')
                         ->options(['唱', '跳', 'RAP', '踢足球'])
                         ->required();
@@ -73,13 +74,13 @@ JS;
                     });
 
                 })
-                ->add('地址', function (Form\StepForm $step) {
+                ->add('地址', function (StepForm $step) {
                     $step->text('address', '街道地址');
                     $step->text('post_code', '邮政编码');
                     $step->tel('tel', ' 联系电话');
                 })
                 ->done(function () use ($form) {
-                    $resource = $form->getResource(0);
+                    $resource = $form->resource(0);
 
                     $data = [
                         'title'       => '操作成功',
@@ -88,7 +89,7 @@ JS;
                         'backUrl'     => $resource,
                     ];
 
-                    return view('admin::form.done-step', $data);
+                    return view('dcat-admin.form-step::completion-page', $data);
                 });
         });
     }

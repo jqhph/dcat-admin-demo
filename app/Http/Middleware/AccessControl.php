@@ -2,7 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Dcat\Admin\Auth\Permission;
+use Dcat\Admin\Admin;
+use Dcat\Admin\Http\Auth\Permission;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -17,6 +18,7 @@ class AccessControl
             'admin/form',
             'admin/dcat-api/value',
             'admin/helpers/scaffold/table',
+            'admin/dcat-api/form',
         ],
     ];
 
@@ -36,10 +38,7 @@ class AccessControl
             try {
                 Permission::error();
             } catch (HttpException $e) {
-                return response()->json([
-                    'status'  => false,
-                    'message' => '对不起，演示站点不支持修改数据。',
-                ]);
+                return Admin::json()->error('对不起，演示站点不支持修改数据。')->send();
             }
         }
 

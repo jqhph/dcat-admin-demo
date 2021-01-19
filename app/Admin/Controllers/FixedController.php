@@ -24,6 +24,8 @@ class FixedController extends Controller
     protected function grid()
     {
         return new Grid(new Report(), function (Grid $grid) {
+            $grid->showColumnSelector();
+
             $grid->column('name');
             $grid->column('content')->limit(50);
             $grid->column('cost')->sortable();

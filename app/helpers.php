@@ -9,6 +9,8 @@ if (! function_exists('user_config')) {
 
         if (! $config = $session->get('admin.config')) {
             $config = config('admin');
+
+            $config['lang'] = config('app.locale');
         }
 
         if (is_array($key)) {

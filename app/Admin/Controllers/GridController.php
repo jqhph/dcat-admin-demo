@@ -6,9 +6,11 @@ use App\Admin\Metrics\Examples\NewDevices;
 use App\Admin\Metrics\Examples\NewUsers;
 use App\Admin\Metrics\Examples\TotalUsers;
 use App\Admin\Renderable\PostTable;
+use App\Admin\Renderable\UserTable;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
 use Dcat\Admin\Layout\Row;
+use Dcat\Admin\Models\Administrator;
 use Faker\Factory;
 use Illuminate\Routing\Controller;
 
@@ -98,14 +100,10 @@ class GridController extends Controller
                 };
 
                 $filter->equal('user', 'User')
-                    ->selectResource('auth/users')
-                    ->options($options)
+                    ->selectTable(UserTable::make())
+                    ->title('User')
+                    ->model(Administrator::class)
                     ->width('300px');
-
-                $filter->in('users', 'Users')
-                    ->selectResource('auth/users')
-                    ->multiple(2)
-                    ->options($options);
             });
         });
     }

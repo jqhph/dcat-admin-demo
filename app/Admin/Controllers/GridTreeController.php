@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Dcat\Admin\Admin;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Layout\Content;
-use Dcat\Admin\Models\Repositories\Permission;
+use Dcat\Admin\Http\Repositories\Permission;
 use Illuminate\Support\Str;
 
 class GridTreeController extends Controller
@@ -65,7 +65,7 @@ class GridTreeController extends Controller
         $grid->column('created_at');
         $grid->column('updated_at')->sortable();
 
-        $grid->resource('auth/permissions');
+        $grid->setResource('auth/permissions');
         $grid->disableEditButton();
         $grid->showQuickEditButton();
         $grid->enableDialogCreate();

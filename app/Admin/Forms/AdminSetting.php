@@ -2,22 +2,26 @@
 
 namespace App\Admin\Forms;
 
+use Dcat\Admin\Contracts\LazyRenderable;
+use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminSetting extends Form
+class AdminSetting extends Form implements LazyRenderable
 {
+    use LazyWidget;
+
     /**
      * 主题颜色.
      *
      * @var array
      */
     protected $colors = [
-        'indigo'     => '默认',
+        'default'    => '深蓝',
         'blue'       => '蓝',
 //        'blue-light' => '浅蓝',
-        'blue-dark'  => '深蓝',
+//        'blue-dark'  => '深蓝',
         'green'      => '绿',
     ];
 
@@ -26,7 +30,7 @@ class AdminSetting extends Form
      *
      * @param array $input
      *
-     * @return Response
+     * @return mixed
      */
     public function handle(array $input)
     {
@@ -38,7 +42,7 @@ class AdminSetting extends Form
             $this->update($k, $v);
         }
 
-        return $this->ajaxResponse('设置成功');
+        return $this->response()->success('设置成功');
     }
 
     /**
@@ -73,7 +77,7 @@ class AdminSetting extends Form
      *
      * @return string|void
      */
-    public function addSavedScript()
+    public function savedScript()
     {
         return <<<'JS'
     if (data.status) {

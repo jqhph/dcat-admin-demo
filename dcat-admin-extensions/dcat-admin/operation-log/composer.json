@@ -1,0 +1,31 @@
+{
+  "name": "dcat-admin/operation-log",
+  "description": "Dcat Admin 操作日志扩展",
+  "type": "library",
+  "keywords": ["dcat-admin", "extension"],
+  "homepage": "https://github.com/dcat-admin/operation-log",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jiangqh",
+      "email": "841324345@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "dcat/laravel-admin": "~2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dcat\\Admin\\OperationLog\\": "src/"
+    }
+  },
+  "extra": {
+    "dcat-admin": "Dcat\\Admin\\OperationLog\\OperationLogServiceProvider",
+    "laravel": {
+      "providers": [
+        "Dcat\\Admin\\OperationLog\\OperationLogServiceProvider"
+      ]
+    }
+  }
+}

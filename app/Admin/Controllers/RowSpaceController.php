@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use Dcat\Admin\Controllers\UserController;
+use Dcat\Admin\Http\Controllers\UserController;
 
 class RowSpaceController extends UserController
 {

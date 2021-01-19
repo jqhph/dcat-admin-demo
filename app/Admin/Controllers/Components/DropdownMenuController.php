@@ -78,11 +78,11 @@ class DropdownMenuController extends Controller
             });
 
         Admin::script(
-            <<<SCRIPT
+            <<<JS
 $('.test_item').click(function () {
-    LA.info("Selected: " + JSON.stringify($(this).data()));
+    Dcat.success("Selected: " + JSON.stringify($(this).data()));
 });
-SCRIPT
+JS
         );
 
         return Box::make('Example3', $menu1);

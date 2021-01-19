@@ -30,10 +30,6 @@ class FullPageController extends Controller
                 $form->disableResetButton();
                 $form->disableSubmitButton();
 
-                $form->selectResource('user')
-                    ->path('users')
-                    ->multiple(3)
-                    ->width(9);
 
                 $row->column(4, $form);
             })
