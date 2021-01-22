@@ -53,7 +53,7 @@ class AdminSetting extends Form implements LazyRenderable
         $this->text('name')->required()->help('网站名称');
         $this->text('logo')->required()->help('logo设置');
         $this->text('logo-mini', 'Logo mini')->required();
-        $this->radio('lang', '语言')->required()->options(['en' => 'English', 'zh-CN' => '简体中文']);
+        $this->radio('lang', '语言')->required()->options(['en' => 'English', 'zh_CN' => '简体中文']);
         $this->radio('layout.color', '主题')
             ->required()
             ->help('主题颜色，支持自定义！')
