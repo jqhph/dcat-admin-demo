@@ -65,10 +65,10 @@ Admin::navbar(function (Navbar $navbar) {
     $navbar->right(
         <<<HTML
 <ul class="nav navbar-nav">
-    <li>
+    <li class="nav-item">
         &nbsp;
         <a style="cursor: pointer" onclick="window.open('https://github.com/jqhph/dcat-admin-demo')">
-            <i class="ficon feather icon-github"></i> DEMO源码下载
+            <i class="feather icon-github" style="font-size: 1.5rem"></i> DEMO源码下载
         </a> 
         &nbsp; &nbsp; 
     </li>

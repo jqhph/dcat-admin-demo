@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Arr;
 
-if (! function_exists('user_config')) {
+if (! function_exists('user_admin_config')) {
     function user_admin_config($key = null, $value = null)
     {
         $session = session();

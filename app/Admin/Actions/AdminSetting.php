@@ -11,7 +11,7 @@ class AdminSetting extends Action
     /**
      * @return string
      */
-	protected $title = '<i class="ficon feather icon-edit"></i> 网站设置';
+	protected $title = '<i class="feather icon-edit" style="font-size: 1.5rem"></i> 网站设置';
 
     public function render()
     {
@@ -23,7 +23,7 @@ class AdminSetting extends Action
             ->button(
                 <<<HTML
 <ul class="nav navbar-nav">
-    <li> &nbsp;{$this->title()} &nbsp;</li>
+     <li class="nav-item"> &nbsp;{$this->title()} &nbsp;</li>
 </ul> 
 HTML
             );
