@@ -6,7 +6,6 @@ use Dcat\Admin\Contracts\LazyRenderable;
 use Dcat\Admin\Traits\LazyWidget;
 use Dcat\Admin\Widgets\Form;
 use Illuminate\Support\Arr;
-use Symfony\Component\HttpFoundation\Response;
 
 class AdminSetting extends Form implements LazyRenderable
 {
@@ -34,9 +33,7 @@ class AdminSetting extends Form implements LazyRenderable
      */
     public function handle(array $input)
     {
-        $bodyClass = $input['layout']['body_class'];
-
-        $input['layout']['body_class'] = is_array($bodyClass) ? implode(' ', $bodyClass) : $bodyClass;
+        $input['layout']['horizontal_menu'] = in_array('horizontal_menu', $input['layout']['body_class'], true);
 
         foreach (Arr::dot($input) as $k => $v) {
             $this->update($k, $v);
@@ -64,7 +61,10 @@ class AdminSetting extends Form implements LazyRenderable
             ->help('切换菜单栏样式');
 
         $this->checkbox('layout.body_class', '菜单布局')
-            ->options(['sidebar-separate' => 'sidebar-separate'])
+            ->options([
+                'horizontal_menu' => '水平 (Horizontal)',
+                'sidebar-separate' => 'sidebar-separate',
+            ])
             ->help('切换菜单布局');
 //        $this->switch('https', '启用HTTPS');
         $this->switch('helpers.enable', '开发工具');

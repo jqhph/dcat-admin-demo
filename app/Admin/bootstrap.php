@@ -62,7 +62,9 @@ Admin::navbar(function (Navbar $navbar) {
 //            'blue-dark' => '#5686d4',
 //        ],
 //    ]));
-    $navbar->right(
+    $method = config('admin.layout.horizontal_menu') ? 'left' : 'right';
+
+    $navbar->$method(
         <<<HTML
 <ul class="nav navbar-nav">
     <li class="nav-item">
@@ -79,7 +81,7 @@ HTML
 
     // ajax请求不执行
     if (! Dcat\Admin\Support\Helper::isAjaxRequest()) {
-        $navbar->right(App\Admin\Actions\AdminSetting::make()->render());
+        $navbar->$method(App\Admin\Actions\AdminSetting::make()->render());
     }
 
     // 下拉菜单
