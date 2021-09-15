@@ -120,7 +120,7 @@ class LogOperation
      */
     protected function inExceptArray($request)
     {
-        if ($request->routeIs(admin_api_route('value'))) {
+        if ($request->routeIs(admin_api_route_name('value'))) {
             return true;
         }
 

@@ -3,43 +3,15 @@
 namespace App\Admin\Controllers\Movies;
 
 use App\Admin\Controllers\PreviewCode;
-use Dcat\Admin\Controllers\HasResourceActions;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
-use Dcat\Admin\Layout\Content;
 use App\Admin\Repositories\InTheater;
-use Dcat\Admin\Layout\Row;
 
 class InTheaterController extends ComingSoonController
 {
-    use HasResourceActions, PreviewCode;
+    use PreviewCode;
 
     protected $header = '正在上映的电影';
-
-    /**
-     * Index interface.
-     *
-     * @return Content
-     */
-    public function index(Content $content)
-    {
-        $this->define();
-
-        return $content
-            ->header($this->header)
-            ->body($this->grid());
-    }
-
-    /**
-     * Edit interface.
-     *
-     * @param $id
-     * @return Content
-     */
-    public function edit($id, Content $content)
-    {
-        return $content->header($this->header)->body($this->form()->edit($id));
-    }
 
     /**
      * Make a grid builder.

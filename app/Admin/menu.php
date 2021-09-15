@@ -69,6 +69,13 @@ return [
         'parent_id' => 'tables',
     ],
     [
+        'id'        => 'simple-paginate',
+        'title'     => '简化分页',
+        'icon'      => 'feather icon-menu',
+        'uri'       => 'tables/simple-pagination',
+        'parent_id' => 'tables',
+    ],
+    [
         'id'        => 'row-space',
         'title'     => '行间距模式',
         'icon'      => 'feather icon-menu',
@@ -105,13 +112,47 @@ return [
         'uri'       => 'form/step',
         'parent_id' => 'form',
     ],
-
     [
         'id'        => 'whenform',
         'title'     => '表单动态显示',
         'icon'      => 'feather icon-edit-1',
         'uri'       => 'form/when',
         'parent_id' => 'form',
+    ],
+    [
+        'id'        => 'formlayout',
+        'title'     => '表单布局',
+        'icon'      => 'feather icon-layout',
+        'uri'       => '',
+        'parent_id' => 'form',
+    ],
+    [
+        'id'        => 'formlayout-1',
+        'title'     => 'Column布局',
+        'icon'      => 'feather icon-edit-1',
+        'uri'       => 'form/layout/column',
+        'parent_id' => 'formlayout',
+    ],
+    [
+        'id'        => 'formlayout-2',
+        'title'     => 'Block布局',
+        'icon'      => 'feather icon-edit-1',
+        'uri'       => 'form/layout/block',
+        'parent_id' => 'formlayout',
+    ],
+    [
+        'id'        => 'formlayout-3',
+        'title'     => 'Tab布局',
+        'icon'      => 'feather icon-edit-1',
+        'uri'       => 'form/layout/tab',
+        'parent_id' => 'formlayout',
+    ],
+    [
+        'id'        => 'formlayout-4',
+        'title'     => 'Row布局',
+        'icon'      => 'feather icon-edit-1',
+        'uri'       => 'form/layout/row',
+        'parent_id' => 'formlayout',
     ],
 
     [
@@ -280,11 +321,11 @@ return [
         'uri'       => 'form/markdown',
         'parent_id' => 'editor',
     ],
-    [
-        'id'        => 'ueditor',
-        'title'     => 'UEditor',
-        'icon'      => '',
-        'uri'       => 'extensions/ueditor',
-        'parent_id' => 'editor',
-    ],
+    //[
+    //    'id'        => 'ueditor',
+    //    'title'     => 'UEditor',
+    //    'icon'      => '',
+    //    'uri'       => 'extensions/ueditor',
+    //    'parent_id' => 'editor',
+    //],
 ];

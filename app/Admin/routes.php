@@ -66,9 +66,23 @@ Route::group([
     $router->get('form/tinymce/preview', 'EditorController@preview');
     $router->get('form/markdown', 'EditorController@markdown');
 
+    $router->get('form/layout/column', 'FormColumnController@create');
+    $router->get('form/layout/column/preview', 'FormColumnController@preview');
+
+    $router->get('form/layout/block', 'FormBlockController@create');
+    $router->get('form/layout/block/preview', 'FormBlockController@preview');
+
+    $router->get('form/layout/tab', 'FormTabController@create');
+    $router->get('form/layout/tab/preview', 'FormTabController@preview');
+
+    $router->get('form/layout/row', 'FormRowController@create');
+    $router->get('form/layout/row/preview', 'FormRowController@preview');
+
     // 表格
     $router->get('tables/selector', 'SelectorController@index');
     $router->get('tables/selector/preview', 'SelectorController@preview');
+    $router->get('tables/simple-pagination', 'SimplePatinationController@index');
+    $router->get('tables/simple-pagination/preview', 'SimplePatinationController@preview');
 
     // 其余组件
     $router->get('components/charts', 'Components\ChartController@index');

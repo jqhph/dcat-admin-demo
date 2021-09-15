@@ -34,6 +34,7 @@ class GridController extends Controller
     protected function grid()
     {
         return new Grid(null, function (Grid $grid) {
+            $grid->number();
             $grid->column('id')->code()->sortable();
             $grid->column('label')->explode()->label();
             $grid->column('progressBar')->progressBar()->sortable();
@@ -121,12 +122,13 @@ class GridController extends Controller
      *
      * @return array
      */
-    public function generate() {
+    public function generate()
+    {
         $faker = Factory::create();
 
         $data = [];
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $data[] = [
                 'id' => $i+1,
                 'label' => str_repeat($faker->name().',', mt_rand(1, 2)),

@@ -26,14 +26,23 @@ class BorderTableController extends Controller
     protected function grid()
     {
         return new Grid(new Report(), function (Grid $grid) {
-            $grid->name;
-            $grid->content->limit(50);
-            $grid->avgMonthCost->display('异步表单')->modal('弹窗标题', UserProfile::make());
-            $grid->avgYearCost->display('异步表格')->modal('弹窗标题', UserTable::make());
-            $grid->avgYearVist->hide();
-            $grid->incrs;
-            $grid->date->sortable();
-            $grid->created_at;
+            $grid->column('name');
+            $grid->column('content')->limit(50);
+            $grid->column('avgMonthCost')->display('异步表单')->modal(function (Grid\Displayers\Modal $modal) {
+                // 标题
+                $modal->title('弹窗标题');
+
+                // 自定义图标
+                $modal->icon('feather icon-edit');
+
+                // 传递当前行字段值
+                return UserProfile::make()->payload(['name' => $this->name]);
+            });
+            $grid->column('avgYearCost')->display('异步表格')->modal('弹窗标题', UserTable::make());
+            $grid->column('avgYearVist')->hide();
+            $grid->column('incrs');
+            $grid->column('date')->sortable();
+            $grid->column('created_at');
 
             $grid->tools($this->buildPreviewButton());
 

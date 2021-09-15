@@ -26,6 +26,7 @@ return [
         'nullable'          => '允許null',
         'key'               => '索引',
         'translate_title'   => '翻譯標題',
+        'sync_translation_with_comment' => '同步翻譯與註釋',
     ],
     'client' => [
         'delete_confirm'    => '確認刪除?',
@@ -36,6 +37,7 @@ return [
         'submit'            => '提交',
         'selected_options'  => '已選中:num個選項',
         'exceed_max_item'   => '已超出最大可選數量',
+        'no_preview'        => '預覽失敗',
 
         '500' => '系統繁忙，請稍後再試！',
         '403' => '對不起，您無訪問權限，請聯繫管理員。',
@@ -193,6 +195,7 @@ return [
         'Q_EXCEED_SIZE_LIMIT'    => '对不起，檔案大小超出限制',
         'F_DUPLICATE'            => '檔案重複',
         'confirm_delete_file'    => '您確定要刪除該檔案嗎?',
+        'dimensions'             => '圖片規格不正確',
     ],
     'import_extension_confirm'  => '確認導入擴展?',
     'quick_create'              => '快速新增',

@@ -15,6 +15,14 @@ class UserProfile extends Form implements LazyRenderable
         return $this->success('保存成功');
     }
 
+    public function default()
+    {
+        return [
+            // 展示上个页面传递过来的值
+            'name' => $this->payload['name'] ?? '',
+        ];
+    }
+
     public function form()
     {
         $this->text('name', trans('admin.name'))->required()->help('用户昵称');

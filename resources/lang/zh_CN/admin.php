@@ -26,6 +26,7 @@ return [
         'nullable'          => '允许空值',
         'key'               => '索引',
         'translate_title'   => '翻译标题',
+        'sync_translation_with_comment' => '同步翻译与注释',
     ],
     'client' => [
         'delete_confirm'    => '确认删除?',
@@ -36,6 +37,7 @@ return [
         'close'             => '关闭',
         'selected_options'  => '已选中:num个选项',
         'exceed_max_item'   => '已超出最大可选数量',
+        'no_preview'        => '预览失败',
 
         '500' => '系统繁忙，请稍后再试！',
         '403' => '对不起，您没有权限访问，请与管理员联系。',
@@ -193,6 +195,7 @@ return [
         'Q_EXCEED_SIZE_LIMIT'    => '对不起，已超出文件大小限制',
         'F_DUPLICATE'            => '文件重复',
         'confirm_delete_file'    => '您确定要删除这个文件吗?',
+        'dimensions'             => '图片规格不正确',
     ],
     'import_extension_confirm'  => '确认导入拓展？',
     'quick_create'              => '快速创建',

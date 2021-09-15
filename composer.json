@@ -11,7 +11,7 @@
         "php": "^7.1.3",
         "dcat/laravel-admin": "2.*",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0"
     },
     "require-dev": {

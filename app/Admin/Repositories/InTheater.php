@@ -31,8 +31,21 @@ class InTheater extends Repository
 
         $client = new \GuzzleHttp\Client();
 
-        $response = $client->get("{$this->api}?{$this->apiKey}&city={$city}&start=$start&count=$perPage");
-        $data = json_decode((string)$response->getBody(), true);
+        //$response = $client->get("{$this->api}?{$this->apiKey}&city={$city}&start=$start&count=$perPage");
+        //$data = json_decode((string)$response->getBody(), true);
+        $data = [
+            'total' => 1,
+            'subjects' => [
+                [
+                    'title' => '盗梦空间',
+                    'images' => ['https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2616355133.webp'],
+                    'year' => '2010',
+                    'rating' => '9.3',
+                    'directors' => [['name' => '克里斯托弗·诺兰']],
+                    'genres' => ['剧情', '科幻', '悬疑', '冒险'],
+                ],
+            ],
+        ];
 
         return $model->makePaginator(
             $data['total'] ?? 0,

@@ -26,6 +26,7 @@ return [
         'nullable'          => 'nullable',
         'key'               => 'key',
         'translate_title'   => 'Translate Title',
+        'sync_translation_with_comment' => 'Sync translation and comment',
     ],
     'client' => [
         'delete_confirm'    => 'Are you sure to delete this item ?',
@@ -35,6 +36,7 @@ return [
         'close'             => 'Close',
         'selected_options'  => ':num options selected',
         'exceed_max_item'   => 'Maximum items exceeded.',
+        'no_preview'        => 'No preview available.',
 
         '500' => 'Internal server error !',
         '403' => 'Permission deny !',
@@ -192,6 +194,7 @@ return [
         'Q_EXCEED_SIZE_LIMIT'    => 'Sorry, the maximum file-size has been exceeded!',
         'F_DUPLICATE'            => 'Duplicate file.',
         'confirm_delete_file'    => 'Are you sure delete this file from server?',
+        'dimensions'             => 'The image dimensions is invalid.',
     ],
     'import_extension_confirm'  => 'Are you sure import the extension?',
     'quick_create'              => 'Quick create',
